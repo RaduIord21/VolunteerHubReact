@@ -56,7 +56,7 @@ function Projects() {
                     <table className="table table-bordered table-condensed table-striped table-hover sortable">
                         {projects.length === 0 &&
                             <tr>
-                                <td colspan="6">No Records found</td>
+                                <td>No Records found</td>
                             </tr>}
                         {projects.length !== 0 && <>
                             <thead>
@@ -73,9 +73,7 @@ function Projects() {
                                         <td>
                                             <Link to={`/project/${item.id}`} className='btn btn-primary m-1'>View Project</Link>
                                             <button className='btn btn-danger m-1' onClick={() =>handleDeleteProject(item.id)}>Delete Project</button>
-                                            <Link to={`/tasks/${item.id}`} className='btn btn-primary m-1'>Manage Tasks</Link>
-                                            <Link to={`/manageProjectMembers/${item.id}`} className='btn btn-primary m-1'>Manage members</Link>    
-    
+                                            <Link to={`/tasks/${item.id}`} className='btn btn-primary m-1'>Manage Tasks</Link>    
                                         </td>
                                         <td className='m-1'>{item.projectName}</td>
                                         <td className='m-1'>{item.description}</td>

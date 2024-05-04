@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+:root {
+	--ct-logo-lg-height: 76px;
+	--ct-logo-sm-height: 22px;
+	--ct-leftbar-width: 260px;
+	--ct-leftbar-width-md: 160px;
+	--ct-leftbar-width-sm: 70px;
+	--ct-leftbar-condensed-height: 2000px;
+	--ct-topbar-height: 70px;
+	--ct-menu-item-icon-size: 1.2rem;
+	--ct-menu-item-font-size: 0.9375rem;
+	--ct-menu-item-padding-x: 10px;
+	--ct-menu-item-padding-y: 15px;
+	--ct-menu-condensed-link-bg: #727cf5;
+	--ct-footer-height: 60px;
+	--ct-theme-card-border-width: 0px;
+	--ct-menu-bg: #313a46;
+	--ct-menu-item-color: #8391a2;
+	--ct-menu-item-hover-color: #bccee4;
+	--ct-menu-item-active-color: #ffffff;
+	--ct-help-box-bg: rgba(255, 255, 255, 0.07);
+	--ct-topbar-bg: #ffffff;
+	--ct-topbar-item-color: #6c757d;
+	--ct-topbar-item-hover-color: #727cf5;
+	--ct-topbar-search-bg: #f0f3f8;
+	--ct-topbar-user-bg: #fafafd;
+	--ct-topbar-user-border: #eef2f7;
+	--ct-body-bg: #fafbfe;
+    --ct-body-bg-rgb: 250, 251, 254;
+}

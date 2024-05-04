@@ -18,7 +18,7 @@ import CreateProject from './Pages/Projects/CreateProject';
 import Project from './Pages/Projects/Project';
 import ChangeProjectDescription from './Pages/Projects/ChangeProjectDescription';
 import ChangeProjectName from './Pages/Projects/ChangeProjectName';
-import ManageProjectMembers from './Pages/Projects/ManageProjectMembers';
+import AsignTask from './Pages/Tasks/AsignTask';
 
 
 function App() {
@@ -66,7 +66,7 @@ function App() {
           <Route path="/project/:id" Component={() => <Project />} />
           <Route path="/changeProjectDescription/:id" Component={() => <ChangeProjectDescription />} />
           <Route path="/changeProjectName/:id" Component={() => <ChangeProjectName />} />
-          <Route path="/manageProjectMembers/:id" Component={() => < ManageProjectMembers />} />
+          <Route path='/asignTask/:id' Component={() => <AsignTask />}/>
         </Routes>
       </Router>
     </div>

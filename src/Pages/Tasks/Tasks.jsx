@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { CircleNotch } from 'phosphor-react';
 
 
 function Tasks() {
@@ -45,6 +44,7 @@ function Tasks() {
                                 <th>Job</th>
                                 <th>Progress</th>
                                 <th>Status</th>
+                                <th>End Date</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,12 +56,13 @@ function Tasks() {
                             <tr key={index}>
                               <td>{item.name}</td>
                               <td>{item.description}</td>
-                              <td>{item.asigneeId == null ? <button className='btn btn-outline-primary'>Asign task</button> : item.asigneeId}</td>
+                              <td>{<Link to={`/asignTask/${item.id}`}><button className='btn btn-outline-primary'>Asign task</button> </Link>}</td>
                               <td>{item.action}</td>
-                              <td>{item.progress}/{item.successTreshold}</td>
+                              <td>{item.progress}/{item.successTreshold} {item.measureUnit}</td>
                               <td>{item.status}</td>
+                              <td>{item.endDate}</td>
                             </tr>  
-                            ))}
+                            ))}     
                         </tbody>
                 </table>
             </div>
