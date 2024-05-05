@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { UserCircle } from 'phosphor-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Navbar(props) {
   const logout = () => {
@@ -21,55 +21,63 @@ function Navbar(props) {
       });
     props.setName("");
   }
-  let menu;
-  if (props.username === "") {
-    menu = (<>
-      <li className="dropdown-item">
-        <Link to="/login" className='nav-link'>Login</Link>
-      </li>
-      <li className="dropdown-item">
-        <Link to="/register" className='nav-link'>Register</Link>
-      </li></>
 
-    )
-  } else {
-    menu = (<>
-
-      <li className="dropdown-item">
-        <Link to="/login" className='nav-link' onClick={logout}>Logout</Link>
-      </li></>)
-  }
+  
   return (
-    <nav className="navbar bg-secondary">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="/">VolunteerHub</a>
-        <h3>{props.username}</h3>
-        <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        
-        <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          <div className="offcanvas-header">
-            <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-            <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div className="offcanvas-body">
-            <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li className="nav-item dropdown">
-                <Link className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <UserCircle size={32} />  
-                </Link>
-                <ul className="dropdown-menu">
-                  {menu}
-                </ul>
-              </li>
-              <li className="nav-item"><Link to="/Stats" className='nav-link'>Stats</Link></li>
-              <li className="nav-item"><Link to="/dashboard" className='nav-link'>Dashboard</Link></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <div class="leftside-menu">
+
+    <a href="index.html" class="logo logo-dark">
+        <span class="logo-lg">
+            <img src="assets/logo-voluntariat.png" alt="Voluntariat"/>
+        </span>
+        <span class="logo-sm">
+            <img src="assets/images/logo-dark-sm.png" alt="Voluntariat"/>
+        </span>
+    </a>
+
+    <div class="button-sm-hover" data-bs-toggle="tooltip" data-bs-placement="right" title="Show Full Sidebar">
+        <i class="ri-checkbox-blank-circle-line align-middle"></i>
+    </div>
+
+    <div class="button-close-fullsidebar">
+        <i class="ri-close-fill align-middle"></i>
+    </div>
+
+    <div class="h-100" id="leftside-menu-container" data-simplebar="">
+
+        <ul class="side-nav">
+
+            <li class="side-nav-title">Menu</li>
+
+            <li class="side-nav-item">
+                <Link to="/dashboard" className='side-nav-link'><FontAwesomeIcon icon="fa-solid fa-house" /> <span>Dashboard</span></Link>
+            </li>
+            
+            <li class="side-nav-item">
+                <Link to="/createOrganization" className='side-nav-link'><FontAwesomeIcon icon="fa-solid fa-heart-circle-plus" /> <span>New Organization</span></Link>
+            </li>
+
+            <li class="side-nav-title">Utils</li>
+
+            <li class="side-nav-item">
+              <Link to="/Stats" className='side-nav-link'><FontAwesomeIcon icon="fa-solid fa-chart-simple" /> <span>Stats</span></Link>
+            </li>
+
+            <li class="side-nav-item">
+                { props.username ? (
+                <Link to="/login" className='side-nav-link' onClick={logout}><FontAwesomeIcon icon="fa-solid fa-right-from-bracket" /> <span>Logout</span></Link>
+                ) :  (<>
+                <Link to="/login" className='side-nav-link'><FontAwesomeIcon icon="fa-solid fa-right-to-bracket" /> <span>Login</span></Link>
+                <Link to="/register" className='side-nav-link'><FontAwesomeIcon icon="fa-solid fa-signature" /> <span>Register</span></Link>
+                </>
+                )}
+            </li>
+
+        </ul>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
   )
 }
 

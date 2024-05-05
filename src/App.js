@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
+import NavbarCustom from './Components/NavbarCustom';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
@@ -19,7 +20,10 @@ import Project from './Pages/Projects/Project';
 import ChangeProjectDescription from './Pages/Projects/ChangeProjectDescription';
 import ChangeProjectName from './Pages/Projects/ChangeProjectName';
 import AsignTask from './Pages/Tasks/AsignTask';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 
+library.add(fas);
 
 function App() {
 
@@ -49,7 +53,10 @@ function App() {
   return (
     <div className="App">
       <Router>
+        
+        <NavbarCustom username={name} organization={organization} setName={setName}/>
         <Navbar username={name} setName={setName}/>
+        <div className="content-page">
         <Routes>
           <Route path='/' Component={() => <Home />} />
           <Route path='/register' Component={() => <Register />} />
@@ -68,6 +75,7 @@ function App() {
           <Route path="/changeProjectName/:id" Component={() => <ChangeProjectName />} />
           <Route path='/asignTask/:id' Component={() => <AsignTask />}/>
         </Routes>
+        </div>
       </Router>
     </div>
   );
