@@ -1,4 +1,3 @@
-```markdown
 # VolunteerHub
 
 Welcome to **VolunteerHub**, a React-based application designed to streamline volunteer management and event planning for organizations. With VolunteerHub, you can organize volunteer activities, manage volunteer registrations, and track event progress.
@@ -21,7 +20,7 @@ Ensure you have the following installed:
    If you haven't already, clone the VolunteerHub repository to your local machine.
 
    ```bash
-   git clone https://github.com/yourusername/VolunteerHub.git
+   git clone https://github.com/RaduIord21/VolunteerHubReact.git
    ```
 
 2. **Navigate to the Project Directory**
@@ -80,5 +79,5 @@ VolunteerHub is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Contact
 
 If you have any questions or need assistance, please contact the project maintainers.
-```
+
 
