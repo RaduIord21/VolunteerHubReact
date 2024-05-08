@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import {Navigate} from 'react-router-dom';
 import axios from 'axios';
+import background from "../../Assets/bg-13.png";
+import Header from "../../Components/Header";
+import Footer from "../../Components/Footer";
 
 
 function PasswordMatchWarning() {
@@ -48,7 +51,6 @@ const Register = () => {
     else {
       setShowWarning(true);
     }
-    console.log('Role:', role);
     // Reset form fields
     setUsername('');
     setPassword('');
@@ -76,51 +78,75 @@ const Register = () => {
   }
 
 return (<>
-  <h1>Register</h1>
-  <form onSubmit={handleSubmit} className='w-25 m-3'>
-    <div className='mb-3'>
-      <label htmlFor="username" className='form-label'>Username:</label>
-      <input
-        type="text"
-        id="username"
-        value={username}
-        onChange={handleUsernameChange}
-        className='form-control'
-      />
-    </div>
-    <div className='mb-3'>
-      <label htmlFor="email" className='form-label'>email:</label>
-      <input
-        type="text"
-        id="email"
-        value={email}
-        onChange={handleEmailChange}
-        className='form-control'
-      />
-    </div>
-    <div className='mb-3'>
-      <label htmlFor="password" className='from-label'>Password:</label>
-      <input
-        type="password"
-        id="password"
-        value={password}
-        onChange={handlePasswordChange}
-        className='form-control'
-      />
-    </div>
-    <div className='mb-3'>
-      <label htmlFor="password" className='from-label'>Confirm Password:</label>
-      <input
-        type="password"
-        id="password"
-        value={confirmPassword}
-        onChange={handleConfirmPasswordChange}
-        className='form-control'
-      />
-    </div>   
-    <button type="submit" className='btn btn-primary'>Register</button>
-  </form>
-  {showWarning && <PasswordMatchWarning />}
+  <Header />
+  <div>
+    <section className="banner-section" style={{backgroundImage: `url(${background})`}}>
+      <div className="d-flex justify-content-center align-items-center card-enclosure">
+        <div className="card">
+          <div className="card-body">
+            <h5 className="card-title text-center mb-4">Inregistrare</h5>
+            <form onSubmit={handleSubmit} className='px-3'>
+              <div className='mb-3 row'>
+                <label htmlFor="username" className='col-sm-5 col-form-label text-nowrap'>Username</label>
+                <div className="col-sm-7">
+                <input
+                    type="text"
+                    id="username"
+                    value={username}
+                    onChange={handleUsernameChange}
+                    className='form-control'
+                />
+                </div>
+              </div>
+              <div className='mb-3 row'>
+                <label htmlFor="email" className='col-sm-5 col-form-label text-nowrap'>Email</label>
+                <div className="col-sm-7">
+                <input
+                    type="text"
+                    id="email"
+                    value={email}
+                    onChange={handleEmailChange}
+                    className='form-control'
+                />
+                </div>
+              </div>
+              <div className='mb-3 row'>
+                <label htmlFor="password" className='col-sm-5 col-form-label text-nowrap'>Password</label>
+                <div className="col-sm-7">
+                <input
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={handlePasswordChange}
+                    className='form-control'
+                />
+                </div>
+              </div>
+              <div className='mb-3 row'>
+                <label htmlFor="password" className='col-sm-5 col-form-label text-nowrap'>Confirm Password</label>
+                <div className="col-sm-7">
+                <input
+                    type="password"
+                    id="password"
+                    value={confirmPassword}
+                    onChange={handleConfirmPasswordChange}
+                    className='form-control'
+                />
+                </div>
+              </div>
+              <div className='text-center'>
+                <button type="submit" className='btn btn-primary'>Register</button>
+              </div>
+            </form>
+            {showWarning && <PasswordMatchWarning/>}
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <Footer/>
 </>);
 };
 
