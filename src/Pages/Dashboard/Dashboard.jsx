@@ -2,12 +2,14 @@ import React, { useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
+
 function Dashboard(props) {
 
   const [hasOrg, setHasOrg] = useState(true);
   console.log(props);
   useEffect(() => {
-    axios.get("http://localhost:8000/api/organization", {
+    axios.get(serverAddress + "/api/organization", {
       headers: {
         'Content-Type': 'application/json'
       },

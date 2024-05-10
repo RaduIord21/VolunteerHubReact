@@ -1,6 +1,9 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { jwtDecode } from "jwt-decode";
+
+
 // import Navbar from './Components/Navbar';
 // import NavbarCustom from './Components/NavbarCustom';
 // import Home from './Pages/Home/Home';
@@ -27,33 +30,37 @@ library.add(fas);
 
 const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 
+function checkAuthToken() {
+  const token = localStorage.getItem('jwt'); // Obține tokenul JWT din localStorage
+
+  if (!token) {
+    return false;
+  }
+
+  try {
+    const decodedToken = jwtDecode(token);
+    const currentTime = Date.now() / 1000;
+
+    if (decodedToken.exp < currentTime) {
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error decoding JWT:', error);
+    return false;
+  }
+}
+
+if (typeof window !== 'undefined') { // Check if we're running in the browser.
+  checkAuthToken();
+}
+
 function App() {
+  const isUserAuthenticated = checkAuthToken();
 
-  const [organization, setOrganization] = useState(null);
-  const [name, setName] = useState("");
-  const [role, setRole] = useState("Volunteer");
-  const [email, setEmail] = useState("");
-  useEffect(() => {
-    axios.get(serverAddress + "/api/user", {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      withCredentials: true
-    }).then(response => {
-      console.log(response.data);
-      setName(response.data.user.userName);
-      setOrganization(response.data.user.organization);
-      setRole(response.data.roles);
-      setEmail(response.data.currentEmail);
-    }).catch(error => {
-      // Handle error
-      console.log('Error fetching data:', error);
-    });
-  })
-
-  // Dashboard next
   return (
-      <Routes isAuthorized={true} />
+      <Routes isAuthorized={isUserAuthenticated} />
    /* <div className="App">
       <Router>
 

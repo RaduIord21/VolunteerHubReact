@@ -5,6 +5,7 @@ import background from "../../Assets/bg-13.png";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 
+const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 
 function PasswordMatchWarning() {
   return (
@@ -64,7 +65,7 @@ const Register = () => {
       "organizationId": organizationId
     }
 
-    axios.post('http://localhost:8000/api/register', response).then(response => {
+    axios.post(serverAddress + "/api/register", response).then(response => {
       console.log(response);
       setRedirect(true);
     }).catch(error => {
