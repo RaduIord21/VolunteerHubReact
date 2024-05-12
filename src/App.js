@@ -1,8 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { jwtDecode } from "jwt-decode";
-
 
 // import Navbar from './Components/Navbar';
 // import NavbarCustom from './Components/NavbarCustom';
@@ -25,42 +23,21 @@ import { jwtDecode } from "jwt-decode";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import {Routes} from "./Routes";
+import AuthProvider, {useAuth} from "./Hooks/AuthProvider";
 
 library.add(fas);
 
 const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 
-function checkAuthToken() {
-  const token = localStorage.getItem('jwt'); // Obține tokenul JWT din localStorage
-
-  if (!token) {
-    return false;
-  }
-
-  try {
-    const decodedToken = jwtDecode(token);
-    const currentTime = Date.now() / 1000;
-
-    if (decodedToken.exp < currentTime) {
-      return false;
-    }
-
-    return true;
-  } catch (error) {
-    console.error('Error decoding JWT:', error);
-    return false;
-  }
-}
-
-if (typeof window !== 'undefined') { // Check if we're running in the browser.
-  checkAuthToken();
-}
 
 function App() {
-  const isUserAuthenticated = checkAuthToken();
-
+    const user = useAuth();
+    const isUserAuthenticated = (user && user.token) ? user.token : false;
   return (
-      <Routes isAuthorized={isUserAuthenticated} />
+
+      <AuthProvider>
+        <Routes isAuthorized={isUserAuthenticated} />
+      </AuthProvider>
    /* <div className="App">
       <Router>
 

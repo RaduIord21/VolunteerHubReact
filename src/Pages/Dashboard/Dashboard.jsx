@@ -9,18 +9,23 @@ function Dashboard(props) {
   const [hasOrg, setHasOrg] = useState(true);
   console.log(props);
   useEffect(() => {
-    axios.get(serverAddress + "/api/organization", {
+    axios.get(serverAddress + "/api/Organization/organization", {
       headers: {
         'Content-Type': 'application/json'
       },
       withCredentials: true
     }).then(response => {
       console.log(response.data);
+
       if (response.data.organizationName === null || response.data.organizationName === undefined) {
         console.log("Neautorizat");
         setHasOrg(false);
       }
-    })}, []);
+    }).catch(error => {
+      // Handle error
+      console.log('Error fetching data:', error);
+    });
+  }, []);
 
 
     return (<>
