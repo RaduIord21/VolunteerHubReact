@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import NavbarCustom from './Components/NavbarCustom';
 import Home from './Pages/Home/Home';
@@ -52,8 +52,7 @@ function App() {
   // Dashboard next 
   return (
     <div className="App">
-      <Router>
-        
+      <BrowserRouter>
         <NavbarCustom username={name} organization={organization} setName={setName}/>
         <Navbar username={name} setName={setName}/>
         <div className="content-page">
@@ -76,7 +75,7 @@ function App() {
           <Route path='/asignTask/:id' Component={() => <AsignTask />}/>
         </Routes>
         </div>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }

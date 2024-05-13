@@ -22,14 +22,14 @@ function JoinOrganization() {
               'Content-Type': 'application/json'
             },
             withCredentials: true
-          }).then(response => {
+          }).then(response => {npm
             console.log(response.data);
             if (response.data.organizationCode !== null || response.data.organizationCode !== undefined){
                 setRedirectCorrect(true);
             }
         }).catch(error => {
             // Handle error
-            console.log('Login Failed');
+            console.error("Error");
         });
         
     }
