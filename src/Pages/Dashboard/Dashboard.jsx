@@ -1,30 +1,20 @@
 import React, { useState, useEffect} from 'react'
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-
-const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
+import {Link, useNavigate} from 'react-router-dom';
+import api from "../../Hooks/api";
+import {useAuth} from "../../Hooks/AuthProvider";
 
 function Dashboard(props) {
 
+  const auth = useAuth();
   const [hasOrg, setHasOrg] = useState(true);
-  console.log(props);
-  useEffect(() => {
-    axios.get(serverAddress + "/api/Organization/organization", {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      withCredentials: true
-    }).then(response => {
-      console.log(response.data);
+  const navigate = useNavigate();
 
-      if (response.data.organizationName === null || response.data.organizationName === undefined) {
-        console.log("Neautorizat");
-        setHasOrg(false);
-      }
-    }).catch(error => {
-      // Handle error
-      console.log('Error fetching data:', error);
-    });
+  console.log("organizationId", localStorage.getItem("organizationId"));
+  useEffect(() => {
+    if( localStorage.getItem("organizationId") == null) {
+      navigate('/select-organization');
+    }
+
   }, []);
 
 

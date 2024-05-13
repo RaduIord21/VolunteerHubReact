@@ -5,6 +5,7 @@ import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import background from "../../Assets/bg-13.png";
 import {useAuth} from "../../Hooks/AuthProvider";
+import api from "../../Hooks/api";
 
 const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 const AuthContext = createContext();
@@ -14,7 +15,7 @@ const Login = (props) => {
         const [userName, setUserName] = useState('');
         const [password, setPassword] = useState('');
         const [warningTrigger, setWarningTrigger] = useState(false);
-        // const navigate = useNavigate();
+        const navigate = useNavigate();
         const handleUserNameChange = (e) => {
             setUserName(e.target.value);
         };
@@ -30,35 +31,29 @@ const Login = (props) => {
                 userName: userName,
                 password: password,
                 rememberMe: true,
-            })
+            }).then(result => {
+                console.log("login ok");
+                navigate("/dashboard");
+            });
+            /*
                 .then(response => {
-                    const setCookieHeader = response.headers['Set-Cookie'];
 
-                    console.log('Cookie received:', setCookieHeader);
-                    axios.get(serverAddress + "/api/user", {
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        withCredentials: true
-                    }).then(response => {
+                    api.get("/user")
+                        .then(response => {
                         console.log(response.data);
-                        localStorage.setItem('username', response.data.user.userName);
-                        localStorage.setItem('organization', {
-                            id: response.data.organization.id,
-                            name: response.data.organization.name
-                        });
-                        localStorage.setRole('role', response.data.role);
+                        localStorage.setItem('username', response.data.user);
+                        localStorage.setItem('roles', response.data.roles);
+                        navigate("/dashboard");
                     }).catch(error => {
                         // Handle error
                         console.log('Error fetching data:', error);
                     });
-                    // navigate("/dashboard");
                 })
                 .catch(error => {
                     // Handle error
                     setWarningTrigger(true);
                     console.error('Error:', error);
-                });
+                });*/
         };
 
         return (<>

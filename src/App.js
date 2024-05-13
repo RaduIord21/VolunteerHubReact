@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 // import Navbar from './Components/Navbar';
 // import NavbarCustom from './Components/NavbarCustom';
@@ -23,20 +23,15 @@ import axios from 'axios';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import {Routes} from "./Routes";
-import AuthProvider, {useAuth} from "./Hooks/AuthProvider";
+import AuthProvider from "./Hooks/AuthProvider";
 
 library.add(fas);
 
-const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
-
-
 function App() {
-    const user = useAuth();
-    const isUserAuthenticated = (user && user.token) ? user.token : false;
-  return (
 
+  return (
       <AuthProvider>
-        <Routes isAuthorized={isUserAuthenticated} />
+        <Routes />
       </AuthProvider>
    /* <div className="App">
       <Router>

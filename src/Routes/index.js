@@ -10,6 +10,7 @@ import Login from "../Pages/Login/Login";
 import Home from '../Pages/Home/Home'
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import CreateOrganization from "../Pages/Organization/CreateOrganization";
+import SelectOrganization from "../Pages/Organization/SelectOrganization";
 
 export const routes = [
     {
@@ -58,6 +59,14 @@ export const routes = [
                         hasSiderLink: true,
                         component: Organization,
                         path: '/organization'
+                    },
+                    {
+                        name: 'select-organization',
+                        title: 'Select Organization',
+                        hasSiderLink: true,
+                        component: SelectOrganization,
+                        path: '/select-organization',
+                        isPublic: true,
                     },
                     {
                         name: 'create-organization',

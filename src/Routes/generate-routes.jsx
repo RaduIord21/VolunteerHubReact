@@ -1,7 +1,8 @@
 import flattenDeep from 'lodash/flattenDeep';
 import React from 'react';
-import { Route, Routes as ReactRoutes } from 'react-router-dom';
+import {Route, Routes as ReactRoutes} from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
+import {useAuth} from "../Hooks/AuthProvider";
 
 const generateFlattenRoutes = (routes) => {
     if (!routes) return [];
@@ -9,12 +10,16 @@ const generateFlattenRoutes = (routes) => {
 }
 
 export const renderRoutes = (mainRoutes) => {
-    const Routes = ({ isAuthorized }) => {
-        const layouts = mainRoutes.map(({ layout: Layout, routes }, index) => {
+    return ({isAuthorized}) => {
+        const layouts = mainRoutes.map(({layout: Layout, routes}, index) => {
+            const auth = useAuth();
+            const isAuthorized = !!(auth?.user);
+            console.log("auth.user isAuthorized", isAuthorized);
+
             const subRoutes = generateFlattenRoutes(routes);
             return (
-                <Route key={index} element={<Layout />}>
-                    {subRoutes.map(({ component: Component, path, name, isPublic }) => {
+                <Route key={index} element={<Layout/>}>
+                    {subRoutes.map(({component: Component, path, name, isPublic}) => {
                         return (
                             <Route
                                 key={name}
@@ -26,7 +31,7 @@ export const renderRoutes = (mainRoutes) => {
                                 }
                             >
                                 {Component && path && (
-                                    <Route element={<Component />} path={path} />
+                                    <Route element={<Component/>} path={path}/>
                                 )}
                             </Route>
                         );
@@ -36,5 +41,4 @@ export const renderRoutes = (mainRoutes) => {
         });
         return <ReactRoutes>{layouts}</ReactRoutes>;
     };
-    return Routes;
 };
