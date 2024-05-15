@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Dashboard from '../Home/Dashboard';
 import { Navigate } from 'react-router-dom';
 
 function CreateOrganization(props) {
@@ -40,7 +39,7 @@ function CreateOrganization(props) {
         }, {
             headers: {
                 'Content-Type': 'application/json'
-            }, 
+            },
             withCredentials: true
         }).then(response => {
             console.log(response.data);
@@ -52,10 +51,10 @@ function CreateOrganization(props) {
                 console.log("Eroare la crearea organizatiei : " + error);
             });
 
-        
+
     }
-    
-    
+
+
 
     if ( redirect !== true){
     return (
@@ -78,7 +77,8 @@ function CreateOrganization(props) {
         </>
     )}
     else
-    {return <Dashboard organizationExists={redirect} />
+    {
+        //return <Dashboard organizationExists={redirect} />
     }
 }
 

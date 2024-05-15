@@ -50,7 +50,10 @@ font-family: 'Open Sans', sans-serif;*/
     --ct-tertiary-color-rgb: 108, 117, 125;
     --ct-tertiary-bg: #f6f7fb;
     --ct-tertiary-bg-rgb: 246, 247, 251;
-	
+
+	--ct-border-color: #8a969c;
+	--ct-border-width: 1px;
+	--ct-dropdown-min-width: 4rem;
 }
 
 
@@ -1094,8 +1097,7 @@ html[data-bs-theme=dark] #light-dark-mode .ri-moon-line::before {
 	line-height: 38px;
 	left: 10px;
 	top: 0;
-	z-index: 5;
-	color: var(--ct-secondary)
+	color: var(--ct-secondary-color)
 }
 
 .app-search form .input-group-text {
@@ -1137,7 +1139,7 @@ html[data-bs-theme=dark] #light-dark-mode .ri-moon-line::before {
 
 .notification-list .notify-item.read-noti {
 	background-color: transparent;
-	border: 1px solid var(--ct-secondary-bg-subtle);
+	border: 1px solid var(--ct-border-color);
 	-webkit-transition: all .2s ease-in-out;
 	transition: all .2s ease-in-out
 }
@@ -1476,7 +1478,6 @@ html[data-layout=topnav] .topnav .nav-item.active>a {
 
 html[data-layout=topnav] .arrow-down {
 	display: inline-block;
-	display: inline-block;
 	text-rendering: auto;
 	margin-left: calc(var(--ct-menu-item-padding-x) * 1.5);
 	font-size: calc(var(--ct-menu-item-font-size) * 1.18)
@@ -1484,7 +1485,7 @@ html[data-layout=topnav] .arrow-down {
 
 html[data-layout=topnav] .arrow-down:before {
 	content: "\f0140";
-	font-family: "Material Design Icons"
+	font-family: "Material Design Icons", sans-serif
 }
 
 html[data-layout=topnav] #layout-detached,
@@ -1529,7 +1530,6 @@ html[data-layout=topnav] #topnav-color {
 	margin-bottom: 5px;
 	-webkit-transition: -webkit-transform .5s ease;
 	transition: -webkit-transform .5s ease;
-	transition: transform .5s ease;
 	transition: transform .5s ease, -webkit-transform .5s ease
 }
 
@@ -7547,4 +7547,3 @@ span.flatpickr-weekday {
 	display: none
 }
 
-/*# sourceMappingURL=app-saas.min.css.map */

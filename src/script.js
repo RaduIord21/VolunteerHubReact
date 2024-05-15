@@ -11,25 +11,6 @@
 	}
 	
 	
-	//Update Header Style and Scroll to Top
-	function headerStyle() {
-		if($('.main-header').length){
-			var windowpos = $(window).scrollTop();
-			var siteHeader = $('.main-header');
-			var scrollLink = $('.scroll-to-top');
-			if (windowpos >= 1) {
-				siteHeader.addClass('fixed-header');
-				scrollLink.fadeIn(300);
-			} else {
-				siteHeader.removeClass('fixed-header');
-				scrollLink.fadeOut(300);
-			}
-		}
-	}
-	
-	headerStyle();
-	
-	
 	//Submenu Dropdown Toggle
 	if($('.main-header li.dropdown ul').length){
 		$('.main-header li.dropdown').append('<div class="dropdown-btn"><span class="fa fa-angle-down"></span></div>');

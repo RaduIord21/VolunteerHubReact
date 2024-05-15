@@ -1,4 +1,6 @@
 import React, { useEffect, useState }from'react';
+import Header from "../../Components/Header";
+import Footer from "../../Components/Footer";
 
 function Home() {
   let[htmlFileString, setHtmlFileString] = useState();
@@ -11,8 +13,10 @@ function Home() {
   }, []);
 
   return(
-    <div className="App">
+    <div className="page-wrapper">
+      <Header />
       <div dangerouslySetInnerHTML={{ __html: htmlFileString }}></div>
+      <Footer />
     </div>
   );
 }
