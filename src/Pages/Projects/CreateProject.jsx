@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
+import api from '../../Hooks/api';
 
 function CreateProject() {
   
@@ -10,6 +11,7 @@ function CreateProject() {
   const [EndDate, setEndDate] = useState("");
   const [back, setBack] = useState(false);
 
+  const orgId = localStorage.getItem("organizationId");
   const handleBack = () => {
     setBack(true);
   }
@@ -35,7 +37,7 @@ function CreateProject() {
         "endDate" : EndDate
       }
       console.log(response);
-    axios.post('http://localhost:8000/api/createProject', response, {
+    api.post(`/Projects/${orgId}/createProject`, response, {
       headers: {
         'Content-Type': 'application/json'
       },

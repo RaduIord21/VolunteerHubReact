@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import api from '../../Hooks/api';
 
 function CreateTask() {
 
@@ -60,12 +61,8 @@ function CreateTask() {
         }
         console.log(rsp);
 
-        axios.post('http://localhost:8000/api/createTask', rsp, {
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            withCredentials: true
-          }).then(response => {
+        api.post(`/Tasks/${id}/createTask`, rsp
+          ).then(response => {
             console.log(response.data);
         }).catch(error => {
             console.error(error);

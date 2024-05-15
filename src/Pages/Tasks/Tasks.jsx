@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import api from '../../Hooks/api';
 
 
 function Tasks() {
@@ -9,12 +10,7 @@ function Tasks() {
     const { id } = useParams();
     
     useEffect(() => {
-            axios.get(`http://localhost:8000/api/tasks/${id}`, {
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                withCredentials: true
-            }
+            api.get(`/Tasks/${id}/tasks`
             )
                 .then(response => {
                     // handle success
@@ -32,7 +28,7 @@ function Tasks() {
     return <>
         <h1>Tasks</h1>
         <Link to="/dashboard"><button className='btn btn-secondary'>Back</button></ Link>
-        <Link to={`/createTask/${id}`}><button className='btn btn-primary' >Add Task</button></Link>
+        <Link to={`/create-task/${id}`}><button className='btn btn-primary' >Add Task</button></Link>
         <div className="text-center">
             <div className="table-responsive">
                 <table className="table table-bordered table-condensed table-striped table-hover sortable">

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import api from '../../Hooks/api';
+
 
 function Projects() {
 
     const [projects, setProjects] = useState([]);
-
+    const projectId = localStorage.getItem("organizationId");
     const handleDeleteProject = (id) => {
         const deleteData = {
-            Id : id
+            Id : id 
         };
         axios.post('http://localhost:8000/api/deleteProject',deleteData,{
             headers: {
@@ -26,12 +28,7 @@ function Projects() {
     }
     
     useEffect(() => {
-        axios.get('http://localhost:8000/api/projects', {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            withCredentials: true
-        }
+        api.get(`/projects/${projectId}/projects`
         )
             .then(response => {
                 // handle success
@@ -50,7 +47,7 @@ function Projects() {
         <>
             <h1>Projects</h1>
             <Link to="/dashboard"><button className='btn btn-secondary'>Back</button></ Link>
-            <Link to="/createProject"><button className='btn btn-primary' >Add Project</button></Link>
+            <Link to="/create-project"><button className='btn btn-primary' >Add Project</button></Link>
             <div className="text-center">
                 <div className="table-responsive">
                     <table className="table table-bordered table-condensed table-striped table-hover sortable">

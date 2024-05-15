@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
+import api from '../../Hooks/api';
 
 function JoinOrganization() {
 
@@ -11,18 +12,9 @@ function JoinOrganization() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const response =
-        {
-            "code": code
-        }
-        
-        console.log(response);
-        axios.post('http://localhost:8000/api/joinOrganization', response, {
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            withCredentials: true
-          }).then(response => {npm
+       
+        api.post('/Organization/joinOrganization?code=' + code
+        ).then(response => {
             console.log(response.data);
             if (response.data.organizationCode !== null || response.data.organizationCode !== undefined){
                 setRedirectCorrect(true);
@@ -39,7 +31,7 @@ function JoinOrganization() {
     }
     return (
         <>
-            {redirectCorrect && (<Navigate to="/myOrganization" />)}
+            {redirectCorrect && (<Navigate to="/my-organization" />)}
             <form className='w-25 m-3' onSubmit={handleSubmit}>
                 <label for="input1" className='form-label'>Input your code</label>
                 <input type="text" id="input1" name="input1" className='form-control' value={code} onChange={handleCodeChange} />

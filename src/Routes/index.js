@@ -4,13 +4,20 @@ import {renderRoutes} from "./generate-routes";
 import HomeLayout from "../Layouts/HomeLayout";
 import DashboardLayout from "../Layouts/DashboardLayout";
 // Pages
-import Organization from "../Pages/Organization/Organization";
+import Home from '../Pages/Home/Home'
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
-import Home from '../Pages/Home/Home'
 import Dashboard from "../Pages/Dashboard/Dashboard";
+import Organization from "../Pages/Organization/Organization";
 import CreateOrganization from "../Pages/Organization/CreateOrganization";
 import SelectOrganization from "../Pages/Organization/SelectOrganization";
+import Projects from "../Pages/Projects/Projects";
+import Project from "../Pages/Projects/Project";
+import CreateProject from "../Pages/Projects/CreateProject";
+import MyOrganization from "../Pages/Organization/MyOrganization";
+import Tasks from "../Pages/Tasks/Tasks";
+import CreateTask from "../Pages/Tasks/CreateTask";
+import JoinOrganization from "../Pages/Organization/JoinOrganization";
 
 export const routes = [
     {
@@ -35,7 +42,8 @@ export const routes = [
                 component: Register,
                 path: '/register',
                 isPublic: true,
-            }
+            },
+            
         ]
     },
     {
@@ -73,7 +81,70 @@ export const routes = [
                         title: 'Create organization',
                         hasSiderLink: true,
                         component: CreateOrganization,
-                        path: '/createOrganization'
+                        path: '/create-organization'
+                    },
+                    {
+                        name: 'my-organization',
+                        title: 'my organization',
+                        hasSiderLink: true,
+                        component: MyOrganization,
+                        path: '/my-organization'
+                    },
+                    {
+                        name: 'join-organization',
+                        title: 'join organization',
+                        hasSiderLink: true,
+                        component: JoinOrganization,
+                        path: '/join-organization'
+                    }
+                ]
+            },
+            {
+                name: 'project',
+                title: 'Project',
+                hasSiderLink: true,
+                routes: [
+                    {
+                        name: 'projects',
+                        title: 'Proiectele mele',
+                        hasSiderLink: true,
+                        component: Projects,
+                        path: '/projects'
+                    },
+                    {
+                        name: 'create-project',
+                        title: 'Proiect nou',
+                        hasSiderLink: true,
+                        component: CreateProject,
+                        path: '/create-project',
+                        isPublic: true,
+                    },
+                    {
+                        name: 'project-details',
+                        title: 'Project details',
+                        hasSiderLink: true,
+                        component: Project,
+                        path: '/project/:id'
+                    }
+                ]
+            },{
+                name: 'tasks',
+                title: 'tasks',
+                hasSiderLink: true,
+                routes: [
+                    {
+                        name: 'tasks',
+                        title: 'Taskurile mele',
+                        hasSiderLink: true,
+                        component: Tasks,
+                        path: '/tasks/:id'
+                    },
+                    {
+                        name: 'create-tasks',
+                        title: 'Creeaza Taskuri',
+                        hasSiderLink: true,
+                        component: CreateTask,
+                        path: '/create-task/:id'
                     }
                 ]
             }

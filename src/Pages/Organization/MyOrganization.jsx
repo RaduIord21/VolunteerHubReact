@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../../Components/LoadingSpinner';
+import api from "../../Hooks/api";
 
 function MyOrganization(props) {
 
@@ -13,6 +14,7 @@ function MyOrganization(props) {
   const [email, setEmail] = useState("");
   ;
 
+  const orgId = localStorage.getItem("organizationId");
 
   const handleKick = (email) =>{
     const data = {
@@ -31,16 +33,10 @@ function MyOrganization(props) {
     })
   }
   useEffect(() => {
-    axios.get("http://localhost:8000/api/organization", {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      withCredentials: true
-    }).then(response => {
-      setUsers(response.data.users);
+    api.get(`/organization/${orgId}/organization`)
+      .then(response => {
       console.log(response.data);
-      setUser(response.data.currentUser);
-      setCode(response.data.organizationCode);
+      setCode(response.data.code);
       setRole(response.data.currentRole);
       setEmail(response.data.currentEmail);
       setLoading(false);
@@ -50,6 +46,12 @@ function MyOrganization(props) {
     }).catch(error => {
       console.log("Eroare fatalaa " + error)
     })
+
+    api.get(`/organization/${orgId}/organization-users`).then(
+      response =>{
+        setUsers(response.data);
+      }
+    )
   }, []);
 
 
@@ -106,7 +108,7 @@ function MyOrganization(props) {
               </td>
               <td>{item.userName}</td>
               <td>{item.email}</td>
-              <td>{item.result[0]}</td>
+              <td>{item.roles[0]}</td>
             </tr>
           ))
           }

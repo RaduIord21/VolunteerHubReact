@@ -23,10 +23,13 @@ const AuthProvider = ({ children }) => {
     };
 
     const logOut = () => {
-        setUser(null);
+        api.post('/logout').then(response =>{
+            setUser(null);
         setToken("");
-        localStorage.removeItem("site");
+        localStorage.removeItem("site");   
         navigate("/login");
+        });
+        
     };
 
     return (

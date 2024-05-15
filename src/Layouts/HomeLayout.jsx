@@ -1,7 +1,7 @@
 import {Outlet} from "react-router-dom";
 import {useEffect} from "react";
 import "../Styles/main.css";
-import 'animate.css';
+//import 'animate.css';
 
 import {WOW} from 'wowjs'
 

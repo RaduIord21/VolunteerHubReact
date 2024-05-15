@@ -15,7 +15,7 @@ function Home() {
   return(
     <div className="page-wrapper">
       <Header />
-      <div dangerouslySetInnerHTML={{ __html: htmlFileString }}></div>
+      <div dangerouslySetInnerHTML={{ __html: htmlFileString }}></div>  
       <Footer />
     </div>
   );

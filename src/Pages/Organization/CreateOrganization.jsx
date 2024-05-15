@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
+import api from '../../Hooks/api';
 
 function CreateOrganization(props) {
 
@@ -29,7 +30,7 @@ function CreateOrganization(props) {
         if (name === "" || adress ==="" || contact ===""){
             setEmptyform(true);
         }
-        axios.post('http://localhost:8000/api/createOrganization', {
+        api.post('/Organization/createOrganization', {
             name: name,
             adress: adress,
             contact: contact,
