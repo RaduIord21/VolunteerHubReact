@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
 import api from '../../Hooks/api';
 
 
@@ -27,39 +26,45 @@ function Tasks() {
 
     return <>
         <h1>Tasks</h1>
-        <Link to="/dashboard"><button className='btn btn-secondary'>Back</button></ Link>
-        <Link to={`/create-task/${id}`}><button className='btn btn-primary' >Add Task</button></Link>
+        <p><Link to={`/create-task/${id}`}><button className='btn btn-primary' >Add Task</button></Link></p>
         <div className="text-center">
             <div className="table-responsive">
                 <table className="table table-bordered table-condensed table-striped table-hover sortable">
                         <thead>
-                            <tr>
-                                <th>Task name</th>
-                                <th>Description</th>
-                                <th>Asignee</th>
-                                <th>Job</th>
-                                <th>Progress</th>
-                                <th>Status</th>
-                                <th>End Date</th>
-                            </tr>
+                        <tr>
+                            <th>Task name</th>
+                            <th>Description</th>
+                            <th>Job</th>
+                            <th>Progress</th>
+                            <th>Status</th>
+                            <th>End Date</th>
+                            <th>Actiuni</th>
+                        </tr>
                         </thead>
-                        <tbody>
+                    <tbody>
                     {tasks.length === 0 &&
                         <tr>
-                            <td>No Records found</td>
+                            <td colspan={7}>No Records found</td>
                         </tr>}
                     {tasks.map((item, index) => (
-                            <tr key={index}>
-                              <td>{item.name}</td>
-                              <td>{item.description}</td>
-                              <td>{<Link to={`/asignTask/${item.id}`}><button className='btn btn-outline-primary'>Asign task</button> </Link>}</td>
-                              <td>{item.action}</td>
-                              <td>{item.progress}/{item.successTreshold} {item.measureUnit}</td>
-                              <td>{item.status}</td>
-                              <td>{item.endDate}</td>
-                            </tr>  
-                            ))}     
-                        </tbody>
+                        <tr key={index}>
+                            <td>{item.name}</td>
+                            <td>{item.description}</td>
+                            <td>{item.action}</td>
+                            <td>{item.progress}/{item.successTreshold} {item.measureUnit}</td>
+                            <td>{item.status}</td>
+                            <td>{item.endDate}</td>
+                            <td>
+                                <Link to={`/assign-task/${item.id}`}>
+                                <button className='btn btn-outline-primary mx-2'>Atribuie task</button>
+                            </Link>
+                                <Link to={`/tasks/${item.id}/taskmembers`}>
+                                <button className='btn btn-outline-primary mx-2'>Voluntari</button>
+                            </Link>
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
                 </table>
             </div>
         </div>

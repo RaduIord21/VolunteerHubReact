@@ -1,21 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import LoadingSpinner from '../../Components/LoadingSpinner';
 import api from "../../Hooks/api";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {useAuth} from "../../Hooks/AuthProvider";
 
-function SelectOrganization(props) {
 
+function SelectOrganization({ handleCompanyNameUpdate }) {
+
+    const auth = useAuth();
     const [organizations, setOrganizations] = useState([]);
     const [roles, setRoles] = useState(null);
     const navigate = useNavigate();
     const loading = useRef(true);
     const currentOrganization = localStorage.getItem("organizationId");
     localStorage.setItem('roles',"Volunteer");
-    const handleSelect = (organizationId) => {
+    const handleSelect = (organizationId, organizationName) => {
         localStorage.setItem('organizationId', organizationId);
-        localStorage.setItem('roles',roles)
+        localStorage.setItem('roles',roles);
+        auth.updateCompanyName(organizationName);
         navigate('/dashboard');
     }
     useEffect(() => {
@@ -64,7 +67,7 @@ function SelectOrganization(props) {
                             <td>{item.isOwner && <FontAwesomeIcon icon={"check"} />}</td>
                             <td>
                                 <button className='btn btn-sm btn-primary' onClick={() => {
-                                    handleSelect(item.organizationId)
+                                    handleSelect(item.organizationId, item.organizationName)
                                 }}>Selecteaza
                                 </button>
                             </td>

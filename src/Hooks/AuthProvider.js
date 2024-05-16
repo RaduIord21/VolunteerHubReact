@@ -6,6 +6,7 @@ const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [companyName, setCompanyName] = useState(null);
     const [token, setToken] = useState(localStorage.getItem("site") || "");
     const navigate = useNavigate();
     const loginAction = async (data) => {
@@ -15,7 +16,6 @@ const AuthProvider = ({ children }) => {
                 setUser(data.userName);
                 setToken(response.data.token);
                 localStorage.setItem("site", response.data.token);
-
             }).catch(error => {
                 // Handle error
                 console.log('Error fetching data:', error);
@@ -32,8 +32,12 @@ const AuthProvider = ({ children }) => {
         
     };
 
+    const updateCompanyName = (companyName) => {
+        setCompanyName(companyName);
+    }
+
     return (
-        <AuthContext.Provider value={{ token, user, loginAction, logOut }}>
+        <AuthContext.Provider value={{ token, user, companyName, loginAction, logOut, updateCompanyName }}>
             {children}
         </AuthContext.Provider>
     );

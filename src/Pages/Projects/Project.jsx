@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import axios from "axios";
 import LoadingSpinner from '../../Components/LoadingSpinner';
 import api from '../../Hooks/api';
+import {format} from "date-fns";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function Project() {
     let { id } = useParams();
@@ -31,14 +33,27 @@ function Project() {
       }
     
     return (
-        <>  
-         <h1>{Project.projectName}</h1>
-            <Link to="/projects"><button className='btn btn-secondary'>Inapoi</button></Link><br/><br/>
-            
-            <Link to={'/changeProjectName/' + id}><button className='btn btn-primary'>Schimba numele</button></Link>
-            <p>{Project.description}</p>
-            <Link to={'/changeProjectDescription/' + id}><button className='btn btn-primary'>Schimba descrierea</button></Link>
-            <p>Acest proiect tine pana la {Project.endDate}</p>
+        <>
+            <h1>Detalii proiect</h1>
+            <div className="card">
+                <div className="card-body">
+                    <h4 className="card-title">{Project.projectName}&nbsp;&nbsp;
+                        <Link to={'/changeProjectName/' + id}><FontAwesomeIcon icon={'edit'}/>
+                        </Link></h4>
+                    <p className="card-text"><label>Descriere: </label> {Project.description}&nbsp;&nbsp;
+                        <Link to={'/changeProjectDescription/' + id}><FontAwesomeIcon icon={'edit'}/>
+                        </Link>
+                    </p>
+
+                    <p>Acest proiect tine pana la <strong>{Project.endDate}</strong></p>
+                </div>
+                <div className="card-footer d-flex justify-content-between">
+                    <small>Creat: {format(new Date(Project.createdAt), 'dd.MM.yyyy')}</small>
+                    <small>Ultima actualizare: {format(new Date(Project.updatedAt), 'dd.MM.yyyy')}</small>
+                </div>
+            </div>
+
+            <Link to={`/tasks/${Project.id}`} className='btn btn-secondary m-1'>Taskuri</Link>
         </>
     )
 }

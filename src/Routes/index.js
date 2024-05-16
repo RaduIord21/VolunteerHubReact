@@ -15,9 +15,11 @@ import Projects from "../Pages/Projects/Projects";
 import Project from "../Pages/Projects/Project";
 import CreateProject from "../Pages/Projects/CreateProject";
 import MyOrganization from "../Pages/Organization/MyOrganization";
+import AssignTask from "../Pages/Tasks/AsignTask";
 import Tasks from "../Pages/Tasks/Tasks";
 import CreateTask from "../Pages/Tasks/CreateTask";
 import JoinOrganization from "../Pages/Organization/JoinOrganization";
+import TaskMembers from "../Pages/Tasks/TaskMembers";
 
 export const routes = [
     {
@@ -145,6 +147,20 @@ export const routes = [
                         hasSiderLink: true,
                         component: CreateTask,
                         path: '/create-task/:id'
+                    },
+                    {
+                        name: 'assign-task',
+                        title: 'Atribuie task',
+                        hasSiderLink: true,
+                        component: AssignTask,
+                        path: '/assign-task/:id'
+                    },
+                    {
+                        name: 'task-members',
+                        title: 'Membri',
+                        hasSiderLink: true,
+                        component: TaskMembers,
+                        path: '/tasks/:id/taskmembers'
                     }
                 ]
             }

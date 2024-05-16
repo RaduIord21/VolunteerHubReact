@@ -45,7 +45,7 @@ function NavbarCustom(props) {
                                         <h6 class="m-0 font-16 fw-semibold"> Notifications</h6>
                                     </div>
                                     <div class="col-auto">
-                                        <a href="javascript: void(0);" class="text-dark text-decoration-underline">
+                                        <a href="#" class="text-dark text-decoration-underline">
                                             <small>Clear All</small>
                                         </a>
                                     </div>
@@ -56,7 +56,7 @@ function NavbarCustom(props) {
 
                                 <h5 class="text-muted font-13 fw-normal mt-2">Today</h5>
 
-                                <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card unread-noti shadow-none mb-2">
+                                <a href="#" class="dropdown-item p-0 notify-item card unread-noti shadow-none mb-2">
                                     <div class="card-body">
                                         <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>
                                         <div class="d-flex align-items-center">
@@ -78,7 +78,7 @@ function NavbarCustom(props) {
                                 </div>
                             </div>
 
-                            <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item border-top py-2">
+                            <a href="#" class="dropdown-item text-center text-primary notify-item border-top py-2">
                                 View All
                             </a>
 
@@ -99,17 +99,17 @@ function NavbarCustom(props) {
                                 <h6 class="text-overflow m-0">Welcome !</h6>
                             </div>
 
-                            <a href="javascript:void(0);" class="dropdown-item">
+                            <a href="/" class="dropdown-item">
                                 <i class="mdi mdi-account-circle me-1"></i>
                                 <span>My Account</span>
                             </a>
 
-                            <a href="javascript:void(0);" class="dropdown-item">
+                            <a href="/" class="dropdown-item">
                                 <i class="mdi mdi-account-edit me-1"></i>
                                 <span>Settings</span>
                             </a>
 
-                            <a href="javascript:void(0);" class="dropdown-item">
+                            <a href="/" class="dropdown-item">
                                 <i class="mdi mdi-logout me-1"></i>
                                 <span>Logout</span>
                             </a>

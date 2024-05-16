@@ -1,15 +1,15 @@
-import { Button } from "bootstrap";
-import { Outlet, Link, useParams } from "react-router-dom";
-import AuthProvider, { useAuth } from "../Hooks/AuthProvider";
+import { Outlet, Link } from "react-router-dom";
+import { useAuth } from "../Hooks/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {useState} from "react";
 
 const DashboardLayout = () => {
 
     const auth = useAuth();
-    const LogOut = () =>{
-    auth.logOut();
-    console.log("Auth");
-   }
+
+    const LogOut = () => {
+        auth.logOut();
+    }
    
    
     return (
@@ -43,48 +43,6 @@ const DashboardLayout = () => {
                                 <span></span>
                             </div>
                         </button>
-
-                        <div className="app-search dropdown d-none d-lg-block">
-                            <form>
-                                <div className="input-group">
-                                    <input type="search" className="form-control dropdown-toggle"
-                                        placeholder="Search..." id="top-search" />
-                                    <span className="mdi mdi-magnify search-icon"></span>
-                                    <button className="input-group-text btn btn-primary" type="submit">Search</button>
-                                </div>
-                            </form>
-
-                            <div className="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">
-                                <div className="dropdown-header noti-title">
-                                    <h5 className="text-overflow mb-2">Found <span
-                                        className="text-danger">17</span> results</h5>
-                                </div>
-
-                                <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                    <i className="uil-notes font-16 me-1"></i>
-                                    <span>Analytics Report</span>
-                                </a>
-
-                                <div className="dropdown-header noti-title">
-                                    <h6 className="text-overflow mb-2 text-uppercase">Users</h6>
-                                </div>
-
-                                <div className="notification-list">
-                                    <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                        <div className="d-flex">
-                                            <img className="d-flex me-2 rounded-circle"
-                                                src="assets/images/users/avatar-2.jpg" alt="Generic placeholder image"
-                                                height="32" />
-                                            <div className="w-100">
-                                                <h5 className="m-0 font-14">Erwin Brown</h5>
-                                                <span className="font-12 mb-0">UI Designer</span>
-                                            </div>
-                                        </div>
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <ul className="topbar-menu d-flex align-items-center gap-3">
@@ -115,7 +73,7 @@ const DashboardLayout = () => {
                                             <h6 className="m-0 font-16 fw-semibold"> Notification</h6>
                                         </div>
                                         <div className="col-auto">
-                                            <a href="javascript: void(0);"
+                                            <a href="#"
                                                 className="text-dark text-decoration-underline">
                                                 <small>Clear All</small>
                                             </a>
@@ -127,7 +85,7 @@ const DashboardLayout = () => {
 
                                     <h5 className="text-muted font-13 fw-normal mt-2">Today</h5>
 
-                                    <a href="javascript:void(0);"
+                                    <a href="#"
                                         className="dropdown-item p-0 notify-item card unread-noti shadow-none mb-2">
                                         <div className="card-body">
                                             <span className="float-end noti-close-btn text-muted"><i
@@ -154,7 +112,7 @@ const DashboardLayout = () => {
                                     </div>
                                 </div>
 
-                                <a href="javascript:void(0);"
+                                <a href="#"
                                     className="dropdown-item text-center text-primary notify-item border-top py-2">
                                     View All
                                 </a>
@@ -164,13 +122,13 @@ const DashboardLayout = () => {
 
 
                         <div className="dropdown">
-                            <button to="#" className="nav-link dropdown-toggle arrow-none nav-user px-2" data-bs-toggle="dropdown"
+                            <button className="nav-link dropdown-toggle arrow-none nav-user px-2" data-bs-toggle="dropdown"
                                 role="button" aria-haspopup="false" aria-expanded="false">
 
                                 <div data-letters="MN"></div>
                                 <span className="d-lg-flex flex-column gap-1 d-none">
-                                    <p className="my-0 fw-bold">Coord Onator</p>
-                                    <small className="my-0">Coordonator</small>
+                                    <p className="my-0 fw-bold">{auth.user}</p>
+                                    <small className="my-0">{auth.companyName == null ? 'N/A': auth.companyName}</small>
                                 </span>
                             </button>
                             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-animated profile-dropdown">
@@ -180,7 +138,7 @@ const DashboardLayout = () => {
                                     </div>
                                 </li>
                                 <li>
-                                    <Link to="javascript:void(0);" className="dropdown-item">
+                                    <Link to="/" className="dropdown-item">
                                         <i className="mdi mdi-account-circle me-1"></i>
                                         <span>My Account</span>
                                     </Link>
@@ -248,6 +206,13 @@ const DashboardLayout = () => {
                         </li>
 
                         
+
+                        <li className="side-nav-item">
+                            <Link to="/my-organization" className="side-nav-link">
+                                <FontAwesomeIcon icon={'info-circle'} />
+                                <span>Detalii organizatie</span>
+                            </Link>
+                        </li>
 
                         <li className="side-nav-item">
                             <Link to="/select-organization" className="side-nav-link">

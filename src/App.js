@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 
 // import Navbar from './Components/Navbar';
@@ -24,6 +24,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import {Routes} from "./Routes";
 import AuthProvider from "./Hooks/AuthProvider";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 library.add(fas);
 

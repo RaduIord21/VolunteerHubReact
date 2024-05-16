@@ -21,10 +21,10 @@ function Dashboard(props) {
     return (<>
       {selectOrg && <Navigate to="/select-organization" />}
       <h1>Dashboard</h1> 
-      <Link to="/select-organization"><button className='btn btn-secondary'>Back</button></Link>
       <h3>{(props.username === "") ? 'Unauthorized' : props.username}</h3>
       {
           <div>
+            <h4>Organizatia curenta: {auth.companyName}</h4>
             <Link to="/projects"><button className='btn btn-primary m-1'>Projects</button></Link>
             <Link to="/my-organization"><button className='btn btn-primary m-1'>My organization</button></Link>
           </div>

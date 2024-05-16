@@ -55,33 +55,33 @@ function CreateProject() {
   
 
   return (<>
-    {back && <Navigate to="/projects" />}
+    <h1>Proiect nou</h1>
+    {back && <Navigate to="/projects"/>}
     <form className='w-25 m-3' onSubmit={handleSubmit}>
-      <label className='form-label'>Project Name :</label>
-        <input
+      <label className='form-label'>Nume proiect :</label>
+      <input
           className='form-control'
           name="ProjectName"
           value={ProjectName}
           onChange={handleProjectNameChange}
-        />
-        <label className='form-label'> Description :</label>
-        <textarea
+      />
+      <label className='form-label'> Descriere :</label>
+      <textarea
           className='form-control'
           name="Description"
           value={Description}
           onChange={handleDescriptionChange}
-        />
-      <label className='form-label'> End date : </label>
-        <input
+      />
+      <label className='form-label'> Data finalizare : </label>
+      <input
           className='form-control'
           type="date"
           name="EndDate"
           value={EndDate}
           onChange={handleEndDateChange}
-        />
+      />
       <button className='btn btn-primary mt-3' type="submit">Submit</button>
     </form>
-    <button className='btn btn-secondary' onClick={handleBack}>Back</button>
   </>);
 }
 

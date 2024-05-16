@@ -45,42 +45,42 @@ function Projects() {
     
     return (
         <>
-            <h1>Projects</h1>
-            <Link to="/dashboard"><button className='btn btn-secondary'>Back</button></ Link>
-            <Link to="/create-project"><button className='btn btn-primary' >Add Project</button></Link>
+            <h1>Lista proiecte</h1>
             <div className="text-center">
                 <div className="table-responsive">
                     <table className="table table-bordered table-condensed table-striped table-hover sortable">
+                        <thead>
+                        <tr>
+                            <th scope="col">Nume proiect</th>
+                            <th scope="col">Descriere</th>
+                            <th scope="col">Data finalizare</th>
+                            <th scope="col">Actiuni</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {projects.length === 0 &&
                             <tr>
                                 <td>No Records found</td>
                             </tr>}
                         {projects.length !== 0 && <>
-                            <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Project Name</th>
-                                    <th scope="col">Project Description</th>
-                                    <th scope="col">End Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {projects.map((item, index) => (
-                                    <tr key={index}>
-                                        <td>
-                                            <Link to={`/project/${item.id}`} className='btn btn-primary m-1'>View Project</Link>
-                                            <button className='btn btn-danger m-1' onClick={() =>handleDeleteProject(item.id)}>Delete Project</button>
-                                            <Link to={`/tasks/${item.id}`} className='btn btn-primary m-1'>Manage Tasks</Link>    
-                                        </td>
-                                        <td className='m-1'>{item.projectName}</td>
-                                        <td className='m-1'>{item.description}</td>
-                                        <td className='m-1'>{item.endDate}</td>
-                                    </tr>
-                                ))
-                                }
-                            </tbody>
+                        {projects.map((item, index) => (
+                            <tr key={index}>
+                                <td className='m-1'>{item.projectName}</td>
+                                <td className='m-1'>{item.description}</td>
+                                <td className='m-1'>{item.endDate}</td>
+                                <td>
+                                    <Link to={`/project/${item.id}`} className='btn btn-primary m-1'>Detalii</Link>
+                                    <button className='btn btn-danger m-1'
+                                            onClick={() => handleDeleteProject(item.id)}>Stergere
+                                    </button>
+                                    <Link to={`/tasks/${item.id}`} className='btn btn-secondary m-1'>Taskuri</Link>
+                                </td>
+                            </tr>
+                        ))
+                        }
                         </>
                         }
+                        </tbody>
                     </table>
                 </div>
             </div>
