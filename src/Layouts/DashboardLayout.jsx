@@ -6,11 +6,13 @@ import {useState} from "react";
 const DashboardLayout = () => {
 
     const auth = useAuth();
-
     const LogOut = () => {
         auth.logOut();
     }
-   
+    let hasOrg = false;
+    if(localStorage.getItem("organizationId") != null){
+        hasOrg = true;
+    }
    
     return (
         <div className="wrapper">
@@ -207,12 +209,12 @@ const DashboardLayout = () => {
 
                         
 
-                        <li className="side-nav-item">
+                        {hasOrg && <li className="side-nav-item">
                             <Link to="/my-organization" className="side-nav-link">
                                 <FontAwesomeIcon icon={'info-circle'} />
                                 <span>Detalii organizatie</span>
                             </Link>
-                        </li>
+                        </li>}
 
                         <li className="side-nav-item">
                             <Link to="/select-organization" className="side-nav-link">

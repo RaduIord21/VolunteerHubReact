@@ -7,7 +7,18 @@ function TaskMembers() {
 
     const [members,setMembers] = useState([]);
     const { id } = useParams();
-    
+
+    const handleKick = (Id) =>{
+        
+        api.post(`/Tasks/${id}/kickFromTask`,{
+            userId: Id
+          }).then(response =>{
+            console.log(members);
+            const updatedItems = members.filter(item => item.id != Id);
+            setMembers(updatedItems);
+          });
+    };
+
     useEffect(() => {
             api.get(`/Tasks/${id}/TaskMembers`
             )
@@ -15,7 +26,6 @@ function TaskMembers() {
                     // handle success
                     console.log(response.data);
                     setMembers(response.data);
-                    console.log(members, 'aici');
 
                 })
                 .catch(error => {
@@ -43,9 +53,9 @@ function TaskMembers() {
                         </tr>}
                     {members.map((item, index) => (
                         <tr key={index}>
-                            <td>{item.name}</td>
+                            <td>{item.userName}</td>
                             <td>
-                                kick
+                                {item ? <button className='btn btn-danger' onClick={(e) =>{e.preventDefault(); handleKick(item.id)}}>Kick</button> : <></>}
                             </td>
                         </tr>
                     ))}

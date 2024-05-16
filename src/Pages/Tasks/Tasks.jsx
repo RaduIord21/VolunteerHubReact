@@ -50,14 +50,11 @@ function Tasks() {
                         <tr key={index}>
                             <td>{item.name}</td>
                             <td>{item.description}</td>
-                            <td>{item.action}</td>
+                            <td><Link to={`/tasks/update-task/${item.id}`}><button className='btn btn-outline-primary mx-2'>{item.action}</button></Link></td>
                             <td>{item.progress}/{item.successTreshold} {item.measureUnit}</td>
                             <td>{item.status}</td>
                             <td>{item.endDate}</td>
                             <td>
-                                <Link to={`/assign-task/${item.id}`}>
-                                <button className='btn btn-outline-primary mx-2'>Atribuie task</button>
-                            </Link>
                                 <Link to={`/tasks/${item.id}/taskmembers`}>
                                 <button className='btn btn-outline-primary mx-2'>Voluntari</button>
                             </Link>

@@ -57,7 +57,7 @@ function App() {
             <Route path="/project/:id" Component={() => <Project />} />
           <Route path="/changeProjectDescription/:id" Component={() => <ChangeProjectDescription />} />
           <Route path="/changeProjectName/:id" Component={() => <ChangeProjectName />} />
-          <Route path='/asignTask/:id' Component={() => <AsignTask />}/>
+            <Route path='/asignTask/:id' Component={() => <AsignTask />}/>
         </Routes>
         </div>
       </Router>

@@ -7,10 +7,14 @@ import {format} from "date-fns";
 
 function AsignTask() {
     const { id } = useParams();
-    const [checkboxItems, setCheckboxItems] = useState([]);
+    const [options, setOptions] = useState([])
     const [task, setTask] = useState(null);
     const [back, setBack] = useState(false);
 
+    
+
+    
+    
     useEffect(() => {
 
         api.get(`/tasks/${id}/task`
@@ -20,9 +24,9 @@ function AsignTask() {
             
             api.get(`/tasks/${response.data.projectId}/projectMembersForTask`
             ).then(response => {
-                    // handle success
-                    console.log(response.data);
-                    setCheckboxItems(response.data);
+                console.log("Asta e de pe server");          
+                console.log(response.data);
+                    setOptions(response.data);  
                 })
                 .catch(error => {
                     // handle error
@@ -35,28 +39,25 @@ function AsignTask() {
 
     }, []);
 
-    const handleCheckBoxChange = (itemId) => {
-        setCheckboxItems(prevItems =>
-            prevItems.map(item =>
-                item.id === itemId ? { ...item, checked: !item.checked } : item
-            )
+    const handleChange = (id) => {
+        // Actualizăm starea checkbox-ului cu id-ul specificat
+        setOptions((prevCheckboxList) =>
+          prevCheckboxList.map((checkbox) =>
+            checkbox.id === id ? { ...checkbox, checked: !checkbox.checked } : checkbox
+          )
         );
-    };
-
+      };
+    
     const handleSubmit = (e) => {
         e.preventDefault();
+        const users = options.filter(item => item.checked)
+        const userIds = users.map((object) => object.id);   
         const data = 
         {
-            TaskId : task.id,
-            Users : checkboxItems.filter(item => item.checked)
+            userIds: userIds
         }
         console.log(data);
-        api.post(`/tasks/${task.id}/assignTask`,data, {
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                withCredentials: true
-            }
+        api.post(`/tasks/${task.id}/assignTask`,data
             )
                 .then(response => {
                     console.log(response);
@@ -87,15 +88,16 @@ function AsignTask() {
             {back && <Navigate to={`/tasks/${task.projectId}`}/>}
             <h4>Lista voluntari</h4>
             <form onSubmit={handleSubmit}>
-                {checkboxItems.map((item, index) => (
-                        <div class="form-check">
-                            <label className="form-check-label" for={`index${index}`} key={index}>
+                {options.map((item) => (
+                        <div class="form-check" key={item.id}>
+                            <label className="form-check-label" htmlFor={`${item.id}`}>
                                 {item.userName}
                             </label>
-                            <input className="form-check-input" type="checkbox" name="flexRadioDefault" id={`index${index}`}
+                            <input className="form-check-input" type="checkbox" name="flexRadioDefault" id={`${item.id}`}
                                    value={item}
-                                   checked={item.checked !== false}
-                                   onChange={() => handleCheckBoxChange(item.id)}/>
+                                   checked={item.checked || false}
+                                   onChange={() => handleChange(item.id)}
+                                   />
                         </div>
                     )
                 )}

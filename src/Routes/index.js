@@ -20,6 +20,7 @@ import Tasks from "../Pages/Tasks/Tasks";
 import CreateTask from "../Pages/Tasks/CreateTask";
 import JoinOrganization from "../Pages/Organization/JoinOrganization";
 import TaskMembers from "../Pages/Tasks/TaskMembers";
+import UpdateTask from "../Pages/Tasks/UpdateTask";
 
 export const routes = [
     {
@@ -134,6 +135,13 @@ export const routes = [
                 title: 'tasks',
                 hasSiderLink: true,
                 routes: [
+                    {
+                        name: 'update-task',
+                        title: 'Actualizeaza Taskuri',
+                        hasSiderLink: true,
+                        component: UpdateTask,
+                        path: '/tasks/update-task/:id'
+                    },
                     {
                         name: 'tasks',
                         title: 'Taskurile mele',
