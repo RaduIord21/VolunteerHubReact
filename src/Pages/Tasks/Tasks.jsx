@@ -21,6 +21,14 @@ function Tasks() {
         fetchData();
     }
 
+    const handleDelete = (id) =>{
+        api.post(`/Tasks/${id}/DeleteTask`).then(response =>
+            {
+                fetchData();
+                console.log(response.data);
+            }
+        );
+    }
     const fetchData = useCallback(async () => {
         api.get(`/Tasks/${id}/tasks`
             )
@@ -86,6 +94,7 @@ function Tasks() {
                                 <Link to={`/tasks/${item.projectId}/edit-task/${item.id}`}>
                                     <button className='btn btn-sm btn-outline-primary mx-2'>Editeaza task</button>
                                 </Link>
+                                <button className='btn btn-danger' onClick={() => handleDelete(item.id)}>Delete task</button>
                             </td>
                         </tr>
                     ))}
