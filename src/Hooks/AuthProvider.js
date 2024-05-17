@@ -26,7 +26,10 @@ const AuthProvider = ({ children }) => {
         api.post('/logout').then(response =>{
             setUser(null);
         setToken("");
-        localStorage.removeItem("site");   
+        localStorage.removeItem("site");
+        localStorage.removeItem("organizationId");
+        localStorage.removeItem("roles");
+       
         navigate("/login");
         });
         

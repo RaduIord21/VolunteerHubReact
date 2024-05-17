@@ -14,7 +14,7 @@ function TaskMembers() {
             userId: Id
           }).then(response =>{
             console.log(members);
-            const updatedItems = members.filter(item => item.id != Id);
+            const updatedItems = members.filter(item => item.id !== Id);
             setMembers(updatedItems);
           });
     };
@@ -32,7 +32,7 @@ function TaskMembers() {
                     // handle error
                     console.log(error);
                 })
-        }, []);
+        }, [id]);
 
     return <>
         <h1>Voluntari</h1>

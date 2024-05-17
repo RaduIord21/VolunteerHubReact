@@ -21,6 +21,7 @@ import CreateTask from "../Pages/Tasks/CreateTask";
 import JoinOrganization from "../Pages/Organization/JoinOrganization";
 import TaskMembers from "../Pages/Tasks/TaskMembers";
 import UpdateTask from "../Pages/Tasks/UpdateTask";
+import EditTask from "../Pages/Tasks/EditTask";
 
 export const routes = [
     {
@@ -169,6 +170,13 @@ export const routes = [
                         hasSiderLink: true,
                         component: TaskMembers,
                         path: '/tasks/:id/taskmembers'
+                    },
+                    {
+                        name: 'edit-task',
+                        title: 'Membri',
+                        hasSiderLink: true,
+                        component: EditTask,
+                        path: '/tasks/:projectId/edit-task/:id'
                     }
                 ]
             }
