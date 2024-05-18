@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
-import api from '../../Hooks/api';
+import useAxios from '../../Hooks/useAxios';
 
 function JoinOrganization() {
 
@@ -13,7 +13,7 @@ function JoinOrganization() {
         e.preventDefault();
 
        
-        api.post('/Organization/joinOrganization?code=' + code
+        useAxios.post('/Organization/joinOrganization?code=' + code
         ).then(response => {
             console.log(response.data);
             if (response.data.organizationCode !== null || response.data.organizationCode !== undefined){

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../../Hooks/api';
+import useAxios from '../../Hooks/useAxios';
 import { Navigate, useParams } from 'react-router-dom';
 
 const EditTask = () => {
@@ -18,7 +18,7 @@ const EditTask = () => {
 
     useEffect(() => {
         console.log(id, 'edit task')
-        api.get(`/tasks/${id}/task`
+        useAxios.get(`/tasks/${id}/task`
         )
             .then(response => {
                 // handle success
@@ -42,7 +42,7 @@ const EditTask = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         try {
-            api.post(`/Tasks/${id}/editTask`, task)
+            useAxios.post(`/Tasks/${id}/editTask`, task)
                 .then(response => { 
                     setBack(true);
                 });

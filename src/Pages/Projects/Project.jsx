@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from "axios";
 import LoadingSpinner from '../../Components/LoadingSpinner';
-import api from '../../Hooks/api';
+import useAxios from '../../Hooks/useAxios';
 import {format} from "date-fns";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
@@ -15,7 +15,7 @@ function Project() {
     
     useEffect(() => {
         console.log(id, "Acii sunt");
-        api.get('/projects/' + id + '/getProject')
+        useAxios.get('/projects/' + id + '/getProject')
             .then(response => {
                 // Handle successful response
                 console.log(response.data);

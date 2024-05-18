@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {Link, Navigate, useParams} from 'react-router-dom';
 import axios from 'axios';
-import api from "../../Hooks/api";
+import useAxios from "../../Hooks/useAxios";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {format} from "date-fns";
 
@@ -17,12 +17,12 @@ function AsignTask() {
     
     useEffect(() => {
 
-        api.get(`/tasks/${id}/task`
+        useAxios.get(`/tasks/${id}/task`
         ).then(response => {
             console.log(response.data);
             setTask(response.data);
             
-            api.get(`/tasks/${response.data.projectId}/projectMembersForTask`
+            useAxios.get(`/tasks/${response.data.projectId}/projectMembersForTask`
             ).then(response => {
                 console.log("Asta e de pe server");          
                 console.log(response.data);
@@ -57,7 +57,7 @@ function AsignTask() {
             userIds: userIds
         }
         console.log(data);
-        api.post(`/tasks/${task.id}/assignTask`,data
+        useAxios.post(`/tasks/${task.id}/assignTask`,data
             )
                 .then(response => {
                     console.log(response);

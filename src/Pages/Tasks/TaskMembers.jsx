@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import api from '../../Hooks/api';
+import useAxios from '../../Hooks/useAxios';
 
 
 function TaskMembers() {
@@ -10,7 +10,7 @@ function TaskMembers() {
 
     const handleKick = (Id) =>{
         
-        api.post(`/Tasks/${id}/kickFromTask`,{
+        useAxios.post(`/Tasks/${id}/kickFromTask`,{
             userId: Id
           }).then(response =>{
             console.log(members);
@@ -20,7 +20,7 @@ function TaskMembers() {
     };
 
     useEffect(() => {
-            api.get(`/Tasks/${id}/TaskMembers`
+            useAxios.get(`/Tasks/${id}/TaskMembers`
             )
                 .then(response => {
                     // handle success

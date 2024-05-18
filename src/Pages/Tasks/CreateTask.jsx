@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Navigate, useParams} from 'react-router-dom';
-import api from '../../Hooks/api';
+import useAxios from '../../Hooks/useAxios';
 
 function CreateTask() {
 
@@ -61,7 +61,7 @@ function CreateTask() {
         }
         console.log(rsp);
 
-        api.post(`/Tasks/${id}/createTask`, rsp
+        useAxios.post(`/Tasks/${id}/createTask`, rsp
         ).then(response => {
             console.log(response.data);
             setBack(true);

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import api from '../Hooks/api';
+import useAxios from '../Hooks/useAxios';
 
 const UpdateProgressPopup = ({ endpoint, title, instructions, label, show, handleClose }) => {
   const [value, setValue] = useState('');
@@ -8,7 +8,7 @@ const UpdateProgressPopup = ({ endpoint, title, instructions, label, show, handl
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post(endpoint, { 'progress': value }).then(
+      const response = await useAxios.post(endpoint, { 'progress': value }).then(
         e => setValue('')
       );
       handleClose();

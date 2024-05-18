@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
-import api from '../../Hooks/api';
+import useAxios from '../../Hooks/useAxios';
 
 function CreateProject() {
   
@@ -37,7 +37,7 @@ function CreateProject() {
         "endDate" : EndDate
       }
       console.log(response);
-    api.post(`/Projects/${orgId}/createProject`, response, {
+    useAxios.post(`/Projects/${orgId}/createProject`, response, {
       headers: {
         'Content-Type': 'application/json'
       },

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../../Components/LoadingSpinner';
-import api from "../../Hooks/api";
+import useAxios from "../../Hooks/useAxios";
 import { format } from 'date-fns';
 import {useAuth} from "../../Hooks/AuthProvider";
 
@@ -21,7 +21,7 @@ function MyOrganization(props) {
     const data = {
       email : email
     }
-    api.post('/kick', data
+    useAxios.post('/kick', data
     ).then(response =>{
       console.log(response);
       setUsers(prevUsers => prevUsers.filter(user => user.email !== email));
@@ -30,7 +30,7 @@ function MyOrganization(props) {
     })
   }
   useEffect(() => {
-    api.get(`/organization/${orgId}/organization`)
+    useAxios.get(`/organization/${orgId}/organization`)
       .then(response => {
       setOrganization(response.data);
       setLoading(false);
@@ -41,7 +41,7 @@ function MyOrganization(props) {
       console.log("Eroare fatalaa " + error)
     })
 
-    api.get(`/organization/${orgId}/organization-users`).then(
+    useAxios.get(`/organization/${orgId}/organization-users`).then(
       response =>{
         console.log(response.data);
         setUsers(response.data);
@@ -60,7 +60,7 @@ function MyOrganization(props) {
     const response = {
       user: user
     }
-    api.post('/quitOrganization', response
+    useAxios.post('/quitOrganization', response
     ).then(response => {
         // Handle successful response
         console.log(user);

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import LoadingSpinner from '../../Components/LoadingSpinner';
-import api from "../../Hooks/api";
+import useAxios from "../../Hooks/useAxios";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {useAuth} from "../../Hooks/AuthProvider";
@@ -13,17 +13,17 @@ function SelectOrganization({ handleCompanyNameUpdate }) {
     const [roles, setRoles] = useState(null);
     const navigate = useNavigate();
     const loading = useRef(true);
-    const currentOrganization = localStorage.getItem("organizationId");
-    localStorage.setItem('roles',"Volunteer");
-    const handleSelect = (organizationId, organizationName) => {
-        localStorage.setItem('organizationId', organizationId);
-        localStorage.setItem('roles',roles);
-        auth.updateCompanyName(organizationName);
+    const handleSelect = (organization) => {
+        auth.updateCompanyName(organization.organizationName);
+        auth.updateOrganizationId(organization.organizationId);
+        auth.updateRole(organization.isOwner ? 'coordinator' : 'volunteer');
         navigate('/dashboard');
     }
+    const axiosInstance = useAxios();
+
     useEffect(() => {
         loading.current = true;
-        api.get('Organization/organizations')
+        axiosInstance.get('Organization/organizations')
             .then(response => {
                 console.log(response.data);
                 setOrganizations(response.data);
@@ -32,8 +32,10 @@ function SelectOrganization({ handleCompanyNameUpdate }) {
             }).finally(() => {
                 loading.current = false;
             })
-        api.get("/user").then(response =>{
-            setRoles(response.data.roles);
+        axiosInstance.get("/user").then(response =>{
+            if (response.data.roles[0] === 'Admin') {
+                auth.updateRole('admin');
+            }
         });
     }, []);
 
@@ -67,7 +69,7 @@ function SelectOrganization({ handleCompanyNameUpdate }) {
                             <td>{item.isOwner && <FontAwesomeIcon icon={"check"} />}</td>
                             <td>
                                 <button className='btn btn-sm btn-primary' onClick={() => {
-                                    handleSelect(item.organizationId, item.organizationName)
+                                    handleSelect(item)
                                 }}>Selecteaza
                                 </button>
                             </td>

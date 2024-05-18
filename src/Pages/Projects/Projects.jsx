@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import api from '../../Hooks/api';
+import useAxios from '../../Hooks/useAxios';
 
 
 function Projects() {
@@ -28,7 +28,7 @@ function Projects() {
     }
     
     useEffect(() => {
-        api.get(`/projects/${projectId}/projects`
+        useAxios.get(`/projects/${projectId}/projects`
         )
             .then(response => {
                 // handle success

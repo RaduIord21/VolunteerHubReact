@@ -1,21 +1,20 @@
 import React, {createContext, useEffect, useState} from 'react';
-import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import background from "../../Assets/bg-13.png";
 import {useAuth} from "../../Hooks/AuthProvider";
-import api from "../../Hooks/api";
-
-const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
-const AuthContext = createContext();
+import useAxios from "../../Hooks/useAxios";
 
 //https://dev.to/miracool/how-to-manage-user-authentication-with-react-js-3ic5
-const Login = (props) => {
+const Login = () => {
         const [userName, setUserName] = useState('');
         const [password, setPassword] = useState('');
         const [warningTrigger, setWarningTrigger] = useState(false);
         const navigate = useNavigate();
+        const {login, updateUser} = useAuth();
+        const axiosInstance = useAxios();
+
         const handleUserNameChange = (e) => {
             setUserName(e.target.value);
         };
@@ -24,36 +23,23 @@ const Login = (props) => {
             setPassword(e.target.value);
         };
 
-        const auth = useAuth();
-        const handleSubmit = (e) => {
+        const handleSubmit = async (e) => {
             e.preventDefault();
-            auth.loginAction({
+            console.log('login submit');
+            await axiosInstance.post("/login", {
                 userName: userName,
                 password: password,
                 rememberMe: true,
-            }).then(result => {
-                console.log("login ok");
+            }).then(response => {
+                console.log(response, "login ok");
+                login(response.data.token);
+                updateUser(userName);
                 navigate("/dashboard");
+            }).catch(error => {
+                // Handle error
+                console.log(error, "login error");
+                setWarningTrigger(true);
             });
-            /*
-                .then(response => {
-
-                    api.get("/user")
-                        .then(response => {
-                        console.log(response.data);
-                        localStorage.setItem('username', response.data.user);
-                        localStorage.setItem('roles', response.data.roles);
-                        navigate("/dashboard");
-                    }).catch(error => {
-                        // Handle error
-                        console.log('Error fetching data:', error);
-                    });
-                })
-                .catch(error => {
-                    // Handle error
-                    setWarningTrigger(true);
-                    console.error('Error:', error);
-                });*/
         };
 
         return (<>

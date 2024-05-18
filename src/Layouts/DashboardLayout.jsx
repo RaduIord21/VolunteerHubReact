@@ -1,19 +1,18 @@
 import { Outlet, Link } from "react-router-dom";
 import { useAuth } from "../Hooks/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const DashboardLayout = () => {
 
     const auth = useAuth();
+    const navigate = useNavigate();
     const LogOut = () => {
-        auth.logOut();
+        auth.logout();
+        navigate('/');
     }
-    let hasOrg = false;
-    if (localStorage.getItem("organizationId") != null) {
-        hasOrg = true;
-    }
-
+    const hasOrg = auth.organizationId !== null;
+   
     return (
         <div className="wrapper">
 
@@ -207,7 +206,6 @@ const DashboardLayout = () => {
                         </li>
 
 
-
                         <li className="side-nav-title">Organizatie</li>
 
                         <li className="side-nav-item">
@@ -217,7 +215,7 @@ const DashboardLayout = () => {
                             </Link>
                         </li>
 
-
+                        
 
                         {hasOrg && <li className="side-nav-item">
                             <Link to="/my-organization" className="side-nav-link">
@@ -233,7 +231,7 @@ const DashboardLayout = () => {
                             </Link>
                         </li>
 
-
+                        
 
                         <li className="side-nav-title">Proiecte</li>
 
@@ -251,8 +249,8 @@ const DashboardLayout = () => {
                             </Link>
                         </li>
 
-
-
+                        
+                        
                     </ul>
 
                     <div className="clearfix"></div>

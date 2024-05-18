@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from 'react'
 import {Link, useNavigate, Navigate} from 'react-router-dom';
-import api from "../../Hooks/api";
 import {useAuth} from "../../Hooks/AuthProvider";
 
 function Dashboard(props) {
@@ -10,9 +9,8 @@ function Dashboard(props) {
   const navigate = useNavigate();
   const [selectOrg, setSelectOrg] = useState(false);
 
-  console.log("organizationId", localStorage.getItem("organizationId"));
   useEffect(() => {
-    if( localStorage.getItem("organizationId") == null) {
+    if( auth.organizationId == null) {
       setSelectOrg(true);
     }
 

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import UpdateProgressPopup from '../../Components/UpdateProgressPopup';
-import api from '../../Hooks/api';
+import useAxios from '../../Hooks/useAxios';
 
 
 function Tasks() {
@@ -22,7 +22,7 @@ function Tasks() {
     }
 
     const handleDelete = (id) =>{
-        api.post(`/Tasks/${id}/DeleteTask`).then(response =>
+        useAxios.post(`/Tasks/${id}/DeleteTask`).then(response =>
             {
                 fetchData();
                 console.log(response.data);
@@ -30,7 +30,7 @@ function Tasks() {
         );
     }
     const fetchData = useCallback(async () => {
-        api.get(`/Tasks/${id}/tasks`
+        useAxios.get(`/Tasks/${id}/tasks`
             )
                 .then(response => {
                     // handle success
