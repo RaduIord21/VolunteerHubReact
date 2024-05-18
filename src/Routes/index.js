@@ -23,6 +23,8 @@ import TaskMembers from "../Pages/Tasks/TaskMembers";
 import UpdateTask from "../Pages/Tasks/UpdateTask";
 import EditTask from "../Pages/Tasks/EditTask";
 import Admin from "../Pages/Admin/Admin";
+import Profile from "../Pages/Home/Profile";
+import ChangePassword from "../Pages/Home/ChangePassword";
 
 export const routes = [
     {
@@ -67,6 +69,20 @@ export const routes = [
                 title: 'Dashboard page',
                 component: Dashboard,
                 path: '/dashboard',
+                isPublic: true,
+            },
+            {
+                name: 'profile',
+                title: 'profile page',
+                component: Profile,
+                path: '/profile',
+                isPublic: true,
+            }, 
+            {
+                name: 'change-password',
+                title: 'change-password',
+                component: ChangePassword,
+                path: '/change-password',
                 isPublic: true,
             },
             {

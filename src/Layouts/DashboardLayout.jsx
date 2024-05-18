@@ -140,7 +140,7 @@ const DashboardLayout = () => {
                                     </div>
                                 </li>
                                 <li>
-                                    <Link to="/" className="dropdown-item">
+                                    <Link to="/profile" className="dropdown-item">
                                         <i className="mdi mdi-account-circle me-1"></i>
                                         <span>My Account</span>
                                     </Link>
