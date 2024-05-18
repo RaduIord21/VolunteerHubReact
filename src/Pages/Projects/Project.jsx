@@ -10,6 +10,7 @@ function Project() {
     let { id } = useParams();
     const [Project, setProject] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [projectStats, setProjectStats] = useState(null);
 
     
     useEffect(() => {
@@ -26,6 +27,10 @@ function Project() {
                 // Handle error
                 console.error('Eroare la getProject:', error);
             });
+        api.get(`/ProjectStats/${id}/ProjectStats`).then(response =>{
+            console.log(response.data); 
+            setProjectStats(response.data);
+        });
     },[id]);
 
     if (loading) {
@@ -46,10 +51,12 @@ function Project() {
                     </p>
 
                     <p>Acest proiect tine pana la <strong>{Project.endDate}</strong></p>
+                    <p>Progres :{projectStats.totalTasksCompleted} / {projectStats.totalTasksAsigned}   </p>
                 </div>
                 <div className="card-footer d-flex justify-content-between">
                     <small>Creat: {format(new Date(Project.createdAt), 'dd.MM.yyyy')}</small>
                     <small>Ultima actualizare: {format(new Date(Project.updatedAt), 'dd.MM.yyyy')}</small>
+                    
                 </div>
             </div>
 
