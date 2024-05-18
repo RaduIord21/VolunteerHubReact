@@ -1,7 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
 import { useAuth } from "../Hooks/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {useState} from "react";
+import { useState } from "react";
 
 const DashboardLayout = () => {
 
@@ -10,10 +10,10 @@ const DashboardLayout = () => {
         auth.logOut();
     }
     let hasOrg = false;
-    if(localStorage.getItem("organizationId") != null){
+    if (localStorage.getItem("organizationId") != null) {
         hasOrg = true;
     }
-   
+
     return (
         <div className="wrapper">
 
@@ -130,7 +130,7 @@ const DashboardLayout = () => {
                                 <div data-letters="MN"></div>
                                 <span className="d-lg-flex flex-column gap-1 d-none">
                                     <p className="my-0 fw-bold">{auth.user}</p>
-                                    <small className="my-0">{auth.companyName == null ? 'N/A': auth.companyName}</small>
+                                    <small className="my-0">{auth.companyName == null ? 'N/A' : auth.companyName}</small>
                                 </span>
                             </button>
                             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-animated profile-dropdown">
@@ -188,15 +188,25 @@ const DashboardLayout = () => {
 
                     <ul className="side-nav">
 
+                        <li className="side-nav-title">Administrator</li>
+
+                        <li className="side-nav-item">
+                            <Link to="/admin" className="side-nav-link">
+                                <FontAwesomeIcon icon={'home'} />
+                                <span>Administrare utilizatori</span>
+                            </Link>
+                        </li>
+
                         <li className="side-nav-title">Meniu</li>
 
                         <li className="side-nav-item">
                             <Link to="/dashboard" className="side-nav-link">
-                                        <FontAwesomeIcon icon={'home'} />
-                                        <span>Panoul de control</span>
-                                    </Link>
+                                <FontAwesomeIcon icon={'home'} />
+                                <span>Panoul de control</span>
+                            </Link>
                         </li>
-                        
+
+
 
                         <li className="side-nav-title">Organizatie</li>
 
@@ -207,7 +217,7 @@ const DashboardLayout = () => {
                             </Link>
                         </li>
 
-                        
+
 
                         {hasOrg && <li className="side-nav-item">
                             <Link to="/my-organization" className="side-nav-link">
@@ -223,7 +233,7 @@ const DashboardLayout = () => {
                             </Link>
                         </li>
 
-                        
+
 
                         <li className="side-nav-title">Proiecte</li>
 
@@ -241,8 +251,8 @@ const DashboardLayout = () => {
                             </Link>
                         </li>
 
-                        
-                        
+
+
                     </ul>
 
                     <div className="clearfix"></div>

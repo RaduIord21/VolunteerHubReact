@@ -22,6 +22,7 @@ import JoinOrganization from "../Pages/Organization/JoinOrganization";
 import TaskMembers from "../Pages/Tasks/TaskMembers";
 import UpdateTask from "../Pages/Tasks/UpdateTask";
 import EditTask from "../Pages/Tasks/EditTask";
+import Admin from "../Pages/Admin/Admin";
 
 export const routes = [
     {
@@ -48,11 +49,19 @@ export const routes = [
                 isPublic: true,
             },
             
+            
         ]
     },
     {
         layout: DashboardLayout,
         routes: [
+            {
+                name: 'Admin',
+                title: 'Admin',
+                component: Admin,
+                path: '/admin',
+                isPublic: true,
+            },
             {
                 name: 'dashboard',
                 title: 'Dashboard page',
