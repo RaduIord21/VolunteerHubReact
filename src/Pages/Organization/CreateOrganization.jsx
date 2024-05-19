@@ -61,20 +61,20 @@ function CreateOrganization(props) {
     return (
         <>
             {redirect && <Navigate to="Organization"/>}
-            <form className='w-25 m-3' onSubmit={handleSubmit}>
+            <form className='m-3' onSubmit={handleSubmit}>
 
-                <label for="input1" className='form-label'>Name your organization</label>
+                <label for="input1" className='form-label'>Numele organizatiei</label>
                 <input type="text" id="input1" name="input1" className='form-control' value={name} onChange={handleNameChange} />
 
-                <label for="input2" className='form-label'>Adress of your organization :</label>
+                <label for="input2" className='form-label'>Adresa organizatiei:</label>
                 <input type="text" id="input2" name="input2" className='form-control' value={adress} onChange={handleAdressChange} />
 
-                <label for="input3" className='form-label'>Contact info :</label>
+                <label for="input3" className='form-label'>Contact :</label>
                 <input type="text" id="input3" name="input3" className='form-control' value={contact} onChange={handleContactChange} />
 
-                <input className='btn btn-primary mt-3' type="submit" value="Submit !" />
+                <input className='btn btn-primary mt-3' type="submit" value="Trimite !" />
             </form>
-            {emptyForm && <span className='text-danger'>Please input something in the fields</span>}
+            {emptyForm && <span className='text-danger'>Adaugati date in formulare</span>}
         </>
     )}
     else
