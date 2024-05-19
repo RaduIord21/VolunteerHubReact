@@ -1,4 +1,5 @@
 import { useContext, createContext, useState } from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const AuthContext = createContext(null);
 
@@ -6,7 +7,7 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [companyName, setCompanyName] = useState(null);
     const [organizationId, setOrganizationId] = useState(null);
-    const [role, setRole] = useState('anonymous');
+    const [role, setRole] = useState('anonymous');  //'admin', 'anonymous' , 'volunteer', 'coordinator'
     const [token, setToken] = useState(null);//localStorage.getItem("site") || "");
 
     const login = (newToken) => {
