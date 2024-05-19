@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import api from '../../Hooks/api';
+import useAxios from "../../Hooks/useAxios";
 import { Navigate } from 'react-router-dom';
 
 function ChangePassword() {
@@ -8,6 +8,7 @@ function ChangePassword() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [err, setErr] = useState("");
     const [redirect, setRedirect] = useState(false);
+    const axiosInstance = useAxios();
 
     const handleOldPasswordChange = (e) =>{
         setOldPassword(e.target.value)
@@ -28,7 +29,7 @@ function ChangePassword() {
             oldPassword: oldPassword,
             confirmPassword: confirmPassword
           }
-          api.post("/changepassword",data).then(response =>{
+          axiosInstance.post("/changepassword",data).then(response =>{
             setRedirect(true);
           }).catch(error => {
             setErr(error.response.data);

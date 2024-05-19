@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import axios from "axios";
 import LoadingSpinner from '../../Components/LoadingSpinner';
-import useAxios from '../../Hooks/useAxios';
 import {format} from "date-fns";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import useAxios from "../../Hooks/useAxios";
 
 function Project() {
     let { id } = useParams();
     const [Project, setProject] = useState(null);
     const [loading, setLoading] = useState(true);
     const [projectStats, setProjectStats] = useState(null);
-
+    const axiosInstance = useAxios();
     
     useEffect(() => {
         console.log(id, "Acii sunt");
@@ -27,7 +26,7 @@ function Project() {
                 // Handle error
                 console.error('Eroare la getProject:', error);
             });
-        api.get(`/ProjectStats/${id}/ProjectStats`).then(response =>{
+        axiosInstance.get(`/ProjectStats/${id}/ProjectStats`).then(response =>{
             console.log(response.data); 
             setProjectStats(response.data);
         });

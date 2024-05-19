@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import api from '../../Hooks/api';
+import useAxios from "../../Hooks/useAxios";
 import { Link } from 'react-router-dom';
 
 function Profile() {
+    const axiosInstance = useAxios();
     const [profile, setProfile] = useState({
         user:"",
         email:""
     });
 
     useEffect(()=> {
-        api.get("/user").then(response =>{
+        axiosInstance.get("/user").then(response =>{
             console.log(response.data);
             setProfile(response.data);
         });

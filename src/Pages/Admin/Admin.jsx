@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import api from '../../Hooks/api';
+import useAxios from "../../Hooks/useAxios";
 
 function Admin() {
-
+    const axiosInstance = useAxios();
     const [users, setUsers] = useState([]);
 
     const handleImpersonation = (id) =>{
             //console.log(id)
     }
     useEffect(() => {
-        api.get('/AllUsers').then(response => {
+        axiosInstance.get('/AllUsers').then(response => {
             setUsers(response.data);
             console.log(response.data); 
         });
