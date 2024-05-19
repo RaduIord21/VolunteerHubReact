@@ -33,10 +33,10 @@ function JoinOrganization() {
     return (
         <>
             {redirectCorrect && (<Navigate to="/my-organization" />)}
-            <form className='w-25 m-3' onSubmit={handleSubmit}>
-                <label for="input1" className='form-label'>Input your code</label>
+            <form className='m-3' onSubmit={handleSubmit}>
+                <label for="input1" className='form-label'>introduceti codul</label>
                 <input type="text" id="input1" name="input1" className='form-control' value={code} onChange={handleCodeChange} />
-                <input className='btn btn-primary mt-3' type="submit" value="Submit !" />
+                <input className='btn btn-primary mt-3' type="submit" value="Trimite !" />
             </form>
         </>
     )
