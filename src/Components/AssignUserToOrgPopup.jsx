@@ -1,34 +1,34 @@
 import React, {useState} from 'react';
 import {Modal, Button, Form} from 'react-bootstrap';
 
-const AssignUserToOrgPopup = ({currentUser, users, show, handleClose, onUserSelect}) => {
-    const [selectedUser, setSelectedUser] = useState('');
+const AssignUserToOrgPopup = ({show, organizations,  handleClose, onOrganizationSelect}) => {
+    const [selectedOrganization, setSelectedOrganization] = useState('');
 
     const handleChange = (event) => {
-        const selectedUserId = event.target.value;
-        setSelectedUser(selectedUserId);
+        const selectedId = event.target.value;
+        setSelectedOrganization(selectedId);
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        onUserSelect(selectedUser);
+        onOrganizationSelect(selectedOrganization);
         handleClose();
     };
 
     return (
         <Modal show={show} onHide={handleClose} animation={false}>
             <Modal.Header closeButton>
-                <Modal.Title>Selectare coordonator nou</Modal.Title>
+                <Modal.Title>Selectare organizatie</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <p>Voluntarul selectat din lista va deveni noul coordonator al organizatiei</p>
+                <p>Utilizatorul va fi adaugat organizatiei selectate, ca voluntar</p>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="userSelect">
-                        <Form.Label>Membri</Form.Label>
-                        <Form.Control as="select" value={selectedUser} onChange={handleChange}>
+                        <Form.Label>Organizatii</Form.Label>
+                        <Form.Control as="select" value={selectedOrganization} onChange={handleChange}>
                             <option value="" disabled>Selecteaza..</option>
-                            {users.filter((user) => user.userName !== currentUser).map((user) => (
-                                <option key={user.userName} value={user.userName}>
-                                    {user.userName}
+                            {organizations.map((organization) => (
+                                <option key={organization.id} value={organization.id}>
+                                    {organization.name}
                                 </option>
                             ))}
                         </Form.Control>
