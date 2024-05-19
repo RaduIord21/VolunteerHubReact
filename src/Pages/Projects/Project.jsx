@@ -19,17 +19,17 @@ function Project() {
                 // Handle successful response
                 console.log(response.data);
                 setProject(response.data);
-                setLoading(false);
-
+                axiosInstance.get(`/ProjectStats/${id}/ProjectStats`).then(response =>{
+                    console.log(response.data, 'stats'); 
+                    setProjectStats(response.data);
+                    setLoading(false);
+                });
             })
             .catch(error => {
                 // Handle error
                 console.error('Eroare la getProject:', error);
             });
-        axiosInstance.get(`/ProjectStats/${id}/ProjectStats`).then(response =>{
-            console.log(response.data); 
-            setProjectStats(response.data);
-        });
+        
     },[id]);
 
     if (loading) {
