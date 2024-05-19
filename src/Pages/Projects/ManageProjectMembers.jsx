@@ -48,9 +48,9 @@ function ManageProjectMembers() {
       <h1>Manage members</h1>
       <form className='w-25 m-3' onSubmit={handleSubmit}>
         {members.map((item, index) => (
-          <div class="form-radio">
-            <input class="form-check-input" type="radio" onChange={handlePersonChange} id="flexCheckDefault" />
-            <label class="form-check-label" htmlFor="flexCheckDefault">
+          <div className="form-radio">
+            <input className="form-check-input" type="radio" onChange={handlePersonChange} id="flexCheckDefault" />
+            <label className="form-check-label" htmlFor="flexCheckDefault">
               {item.userName}
             </label>
           </div>

@@ -9,7 +9,7 @@ function Organization(props) {
             <h1>Adauga organizatie</h1>
             <div className='row'>
                 <div className='col-6'>
-                    <div class="card">
+                    <div className="card">
                         <div className="card-header">
                             <h4>Creeaza organizatie</h4>
                         </div>

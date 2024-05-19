@@ -86,7 +86,7 @@ function AsignTask() {
             <h4>Lista voluntari</h4>
             <form onSubmit={handleSubmit}>
                 {options.map((item) => (
-                        <div class="form-check" key={item.id}>
+                        <div className="form-check" key={item.id}>
                             <label className="form-check-label" htmlFor={`${item.id}`}>
                                 {item.userName}
                             </label>
