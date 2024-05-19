@@ -2,6 +2,7 @@ import { Outlet, Link } from "react-router-dom";
 import { useAuth } from "../Hooks/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
+import {Tooltip} from "react-tooltip";
 
 const DashboardLayout = () => {
 
@@ -12,6 +13,7 @@ const DashboardLayout = () => {
         navigate('/');
     }
     const hasOrg = auth.organizationId !== null;
+
    
     return (
         <div className="wrapper">
@@ -129,7 +131,14 @@ const DashboardLayout = () => {
                                 <div data-letters="MN"></div>
                                 <span className="d-lg-flex flex-column gap-1 d-none">
                                     <p className="my-0 fw-bold">{auth.user}</p>
-                                    <small className="my-0">{auth.companyName == null ? 'N/A' : auth.companyName}</small>
+                                    <small
+                                        className="my-0">
+                                        {auth.role === 'admin' && <span className="text-muted"><FontAwesomeIcon data-tooltip-id="my-tooltip" data-tooltip-content="Rol administator" icon={'user-astronaut'}/></span>}
+                                        {auth.role === 'anonymous' && <span className="text-muted"><FontAwesomeIcon data-tooltip-id="my-tooltip" data-tooltip-content="Rol anonim" icon={'user-secret'}/></span>}
+                                        {auth.role === 'volunteer' && <span className="text-muted"><FontAwesomeIcon data-tooltip-id="my-tooltip" data-tooltip-content="Rol voluntar" icon={'user-cog'}/></span>}
+                                        {auth.role === 'coordinator' && <span className="text-muted"><FontAwesomeIcon data-tooltip-id="my-tooltip" data-tooltip-content="Rol coordonator" icon={'user-graduate'}/></span>}
+                                        <Tooltip place="bottom" type="dark" effect="solid" id="my-tooltip" />
+                                       <span> {auth.companyName == null ? 'N/A' : auth.companyName}</span>  </small>
                                 </span>
                             </button>
                             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-animated profile-dropdown">
@@ -158,7 +167,7 @@ const DashboardLayout = () => {
 
             <div className="leftside-menu">
 
-                <a href="index.html" className="logo logo-dark">
+                <a href="/dashboard" className="logo logo-dark">
                     <span className="logo-lg">
                         <img src="assets/logo-voluntariat.png" alt="Voluntariat" />
                     </span>
@@ -177,24 +186,21 @@ const DashboardLayout = () => {
                 </div>
 
                 <div className="h-100" id="leftside-menu-container" data-simplebar>
-                    <div className="leftbar-user">
-                        <a href="pages-profile.html">
-                            <img src="assets/images/users/avatar-1.jpg" alt="user-image" height="42"
-                                className="rounded-circle shadow-sm" />
-                            <span className="leftbar-user-name mt-2">Dominic Keller</span>
-                        </a>
-                    </div>
 
+                    {auth.role === 'admin' &&
+                        <ul className="side-nav">
+                            <li className="side-nav-title">Administrator</li>
+
+                            <li className="side-nav-item">
+                                <Link to="/admin" className="side-nav-link">
+                                    <FontAwesomeIcon icon={'users'} />
+                                    <span>Administrare utilizatori</span>
+                                </Link>
+                            </li>
+                        </ul>}
+
+                    {auth.role !== 'admin' &&
                     <ul className="side-nav">
-
-                        <li className="side-nav-title">Administrator</li>
-
-                        <li className="side-nav-item">
-                            <Link to="/admin" className="side-nav-link">
-                                <FontAwesomeIcon icon={'users'} />
-                                <span>Administrare utilizatori</span>
-                            </Link>
-                        </li>
 
                         <li className="side-nav-title">Meniu</li>
 
@@ -231,16 +237,17 @@ const DashboardLayout = () => {
                             </Link>
                         </li>
 
-                        
 
+                        {auth.role !== 'anonymous'  && <>
                         <li className="side-nav-title">Proiecte</li>
-
+                        {auth.role === 'coordinator' && <>
                         <li className="side-nav-item">
                             <Link to="/create-project" className="side-nav-link">
                                 <FontAwesomeIcon icon={'circle-plus'} />
                                 <span>Proiect nou</span>
                             </Link>
                         </li>
+                        </>}
 
                         <li className="side-nav-item">
                             <Link to="/projects" className="side-nav-link">
@@ -248,10 +255,10 @@ const DashboardLayout = () => {
                                 <span>Proiectele mele</span>
                             </Link>
                         </li>
+                        </>}
 
-                        
-                        
                     </ul>
+                    }
 
                     <div className="clearfix"></div>
                 </div>

@@ -6,7 +6,7 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [companyName, setCompanyName] = useState(null);
     const [organizationId, setOrganizationId] = useState(null);
-    const [role, setRole] = useState(null);
+    const [role, setRole] = useState('anonymous');
     const [token, setToken] = useState(null);//localStorage.getItem("site") || "");
 
     const login = (newToken) => {

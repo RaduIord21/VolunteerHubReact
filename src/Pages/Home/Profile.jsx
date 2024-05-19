@@ -18,7 +18,7 @@ function Profile() {
     return (
         <>
             <h1>Profil</h1>
-            <div class="card">
+            <div className="card">
                 <div className="card-header">
                     Info
                 </div>

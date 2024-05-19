@@ -24,46 +24,46 @@ function Navbar(props) {
 
   
   return (
-    <div class="leftside-menu">
+    <div className="leftside-menu">
 
-    <a href="index.html" class="logo logo-dark">
-        <span class="logo-lg">
+    <a href="index.html" className="logo logo-dark">
+        <span className="logo-lg">
             <img src="assets/logo-voluntariat.png" alt="Voluntariat"/>
         </span>
-        <span class="logo-sm">
+        <span className="logo-sm">
             <img src="assets/images/logo-dark-sm.png" alt="Voluntariat"/>
         </span>
     </a>
 
-    <div class="button-sm-hover" data-bs-toggle="tooltip" data-bs-placement="right" title="Show Full Sidebar">
-        <i class="ri-checkbox-blank-circle-line align-middle"></i>
+    <div className="button-sm-hover" data-bs-toggle="tooltip" data-bs-placement="right" title="Show Full Sidebar">
+        <i className="ri-checkbox-blank-circle-line align-middle"></i>
     </div>
 
-    <div class="button-close-fullsidebar">
-        <i class="ri-close-fill align-middle"></i>
+    <div className="button-close-fullsidebar">
+        <i className="ri-close-fill align-middle"></i>
     </div>
 
-    <div class="h-100" id="leftside-menu-container" data-simplebar="">
+    <div className="h-100" id="leftside-menu-container" data-simplebar="">
 
-        <ul class="side-nav">
+        <ul className="side-nav">
 
-            <li class="side-nav-title">Menu</li>
+            <li className="side-nav-title">Menu</li>
 
-            <li class="side-nav-item">
+            <li className="side-nav-item">
                 <Link to="/dashboard" className='side-nav-link'><FontAwesomeIcon icon="fa-solid fa-house" /> <span>Dashboard</span></Link>
             </li>
             
-            <li class="side-nav-item">
+            <li className="side-nav-item">
                 <Link to="/createOrganization" className='side-nav-link'><FontAwesomeIcon icon="fa-solid fa-heart-circle-plus" /> <span>New Organization</span></Link>
             </li>
 
-            <li class="side-nav-title">Utils</li>
+            <li className="side-nav-title">Utils</li>
 
-            <li class="side-nav-item">
+            <li className="side-nav-item">
               <Link to="/Stats" className='side-nav-link'><FontAwesomeIcon icon="fa-solid fa-chart-simple" /> <span>Stats</span></Link>
             </li>
 
-            <li class="side-nav-item">
+            <li className="side-nav-item">
                 { props.username ? (
                 <Link to="/login" className='side-nav-link' onClick={logout}><FontAwesomeIcon icon="fa-solid fa-right-from-bracket" /> <span>Logout</span></Link>
                 ) :  (<>
@@ -75,7 +75,7 @@ function Navbar(props) {
 
         </ul>
 
-        <div class="clearfix"></div>
+        <div className="clearfix"></div>
     </div>
 </div>
   )

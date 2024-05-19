@@ -62,7 +62,7 @@ function Projects() {
                         <tbody>
                         {projects.length === 0 &&
                             <tr>
-                                <td>No Records found</td>
+                                <td colSpan={4}>No Records found</td>
                             </tr>}
                         {projects.length !== 0 && <>
                         {projects.map((item, index) => (
