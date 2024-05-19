@@ -11,7 +11,7 @@ function Organization(props) {
                 <div className='col-6'>
                     <div class="card">
                         <div className="card-header">
-                            Creeaza organizatie
+                            <h4>Creeaza organizatie</h4>
                         </div>
                         <div className="card-body">
                             
@@ -22,7 +22,7 @@ function Organization(props) {
                 <div className='col-6'>
                     <div class="card">
                         <div className="card-header">
-                            Alatura-te unei organizatii
+                            <h4>Alatura-te unei organizatii</h4>
                         </div>
                         <div className="card-body">
                             <JoinOrganization />                            
