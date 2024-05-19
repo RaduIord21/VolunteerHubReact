@@ -8,9 +8,10 @@ function UpdateTask() {
     const [redirect, setRedirect] = useState(false);
     const [projectId, setProjectId] = useState(0);
     const now = new Date();
+    const axiosInstance = useAxios();
     const handleUpdate = () => {
         const url = `/Tasks/${id}/updateTask`;
-        useAxios.post(url, {
+        axiosInstance.post(url, {
 
             progress: progress,
             submissionDate: now

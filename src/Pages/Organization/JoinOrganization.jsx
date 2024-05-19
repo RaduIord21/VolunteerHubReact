@@ -8,12 +8,13 @@ function JoinOrganization() {
     const [code, setCode] = useState("");
     const [redirectCorrect, setRedirectCorrect] = useState(false);
     const [redirectFail, setRedirectFail] = useState(false);
-
+    const axiosInstance = useAxios();
+    
     const handleSubmit = (e) => {
         e.preventDefault();
 
        
-        useAxios.post('/Organization/joinOrganization?code=' + code
+        axiosInstance.post('/Organization/joinOrganization?code=' + code
         ).then(response => {
             console.log(response.data);
             if (response.data.organizationCode !== null || response.data.organizationCode !== undefined){

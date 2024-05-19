@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
 import LoadingSpinner from '../../Components/LoadingSpinner';
 import useAxios from "../../Hooks/useAxios";
 import { format } from 'date-fns';
@@ -13,6 +11,7 @@ function MyOrganization(props) {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [role, setRole] = useState("");
+  const axiosInstance = useAxios();
   const auth = useAuth();
 
   const orgId = localStorage.getItem("organizationId");
@@ -21,7 +20,7 @@ function MyOrganization(props) {
     const data = {
       email : email
     }
-    useAxios.post('/kick', data
+    axiosInstance.post('/kick', data
     ).then(response =>{
       console.log(response);
       setUsers(prevUsers => prevUsers.filter(user => user.email !== email));
@@ -30,7 +29,7 @@ function MyOrganization(props) {
     })
   }
   useEffect(() => {
-    useAxios.get(`/organization/${orgId}/organization`)
+    axiosInstance.get(`/organization/${orgId}/organization`)
       .then(response => {
       setOrganization(response.data);
       setLoading(false);
@@ -41,7 +40,7 @@ function MyOrganization(props) {
       console.log("Eroare fatalaa " + error)
     })
 
-    useAxios.get(`/organization/${orgId}/organization-users`).then(
+    axiosInstance.get(`/organization/${orgId}/organization-users`).then(
       response =>{
         console.log(response.data);
         setUsers(response.data);
@@ -60,7 +59,7 @@ function MyOrganization(props) {
     const response = {
       user: user
     }
-    useAxios.post('/quitOrganization', response
+    axiosInstance.post('/quitOrganization', response
     ).then(response => {
         // Handle successful response
         console.log(user);

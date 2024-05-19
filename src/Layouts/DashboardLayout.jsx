@@ -191,7 +191,7 @@ const DashboardLayout = () => {
 
                         <li className="side-nav-item">
                             <Link to="/admin" className="side-nav-link">
-                                <FontAwesomeIcon icon={'home'} />
+                                <FontAwesomeIcon icon={'users'} />
                                 <span>Administrare utilizatori</span>
                             </Link>
                         </li>

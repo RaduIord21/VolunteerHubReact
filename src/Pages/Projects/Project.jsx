@@ -14,7 +14,7 @@ function Project() {
     
     useEffect(() => {
         console.log(id, "Acii sunt");
-        useAxios.get('/projects/' + id + '/getProject')
+        axiosInstance.get('/projects/' + id + '/getProject')
             .then(response => {
                 // Handle successful response
                 console.log(response.data);

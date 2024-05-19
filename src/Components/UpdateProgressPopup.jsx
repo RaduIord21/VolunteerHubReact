@@ -4,11 +4,12 @@ import useAxios from '../Hooks/useAxios';
 
 const UpdateProgressPopup = ({ endpoint, title, instructions, label, show, handleClose }) => {
   const [value, setValue] = useState('');
-
+  const axiosInstance = useAxios();
+    
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await useAxios.post(endpoint, { 'progress': value }).then(
+      const response = await axiosInstance.post(endpoint, { 'progress': value }).then(
         e => setValue('')
       );
       handleClose();

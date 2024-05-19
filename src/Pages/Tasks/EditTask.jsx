@@ -3,6 +3,7 @@ import useAxios from '../../Hooks/useAxios';
 import { Navigate, useParams } from 'react-router-dom';
 
 const EditTask = () => {
+    const axiosInstance = useAxios();
     const { id }     = useParams();
     const { projectId }     = useParams();
     const [back, setBack] = useState(false);
@@ -18,7 +19,7 @@ const EditTask = () => {
 
     useEffect(() => {
         console.log(id, 'edit task')
-        useAxios.get(`/tasks/${id}/task`
+        axiosInstance.get(`/tasks/${id}/task`
         )
             .then(response => {
                 // handle success
@@ -42,7 +43,7 @@ const EditTask = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         try {
-            useAxios.post(`/Tasks/${id}/editTask`, task)
+            axiosInstance.post(`/Tasks/${id}/editTask`, task)
                 .then(response => { 
                     setBack(true);
                 });

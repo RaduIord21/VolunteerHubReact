@@ -16,7 +16,7 @@ function CreateTask() {
     const {id} = useParams();
     const stringToNumber = (str) => parseInt(str, 10);
     const NumId = stringToNumber(id);
-
+    const axiosInstance = useAxios();
 
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -61,7 +61,7 @@ function CreateTask() {
         }
         console.log(rsp);
 
-        useAxios.post(`/Tasks/${id}/createTask`, rsp
+        axiosInstance.post(`/Tasks/${id}/createTask`, rsp
         ).then(response => {
             console.log(response.data);
             setBack(true);

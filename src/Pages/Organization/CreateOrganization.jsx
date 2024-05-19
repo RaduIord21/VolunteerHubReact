@@ -10,6 +10,8 @@ function CreateOrganization(props) {
     const [contact, setContact] = useState("");
     const [redirect, setRedirect]= useState(false);
     const [emptyForm, setEmptyform] = useState(false);
+    const axiosInstance = useAxios();
+    
     //setRole(props.role);
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -30,7 +32,7 @@ function CreateOrganization(props) {
         if (name === "" || adress ==="" || contact ===""){
             setEmptyform(true);
         }
-        useAxios.post('/Organization/createOrganization', {
+        axiosInstance.post('/Organization/createOrganization', {
             name: name,
             adress: adress,
             contact: contact,

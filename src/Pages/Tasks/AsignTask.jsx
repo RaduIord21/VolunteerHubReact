@@ -10,19 +10,16 @@ function AsignTask() {
     const [options, setOptions] = useState([])
     const [task, setTask] = useState(null);
     const [back, setBack] = useState(false);
-
-    
-
-    
+    const axiosInstance = useAxios();
     
     useEffect(() => {
 
-        useAxios.get(`/tasks/${id}/task`
+        axiosInstance.get(`/tasks/${id}/task`
         ).then(response => {
             console.log(response.data);
             setTask(response.data);
             
-            useAxios.get(`/tasks/${response.data.projectId}/projectMembersForTask`
+            axiosInstance.get(`/tasks/${response.data.projectId}/projectMembersForTask`
             ).then(response => {
                 console.log("Asta e de pe server");          
                 console.log(response.data);
@@ -57,7 +54,7 @@ function AsignTask() {
             userIds: userIds
         }
         console.log(data);
-        useAxios.post(`/tasks/${task.id}/assignTask`,data
+        axiosInstance.post(`/tasks/${task.id}/assignTask`,data
             )
                 .then(response => {
                     console.log(response);

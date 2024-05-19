@@ -5,7 +5,7 @@ import useAxios from '../../Hooks/useAxios';
 
 
 function Tasks() {
-
+    const axiosInstance = useAxios();
     const [tasks,setTasks] = useState([]);
     const { id } = useParams();
 
@@ -22,7 +22,7 @@ function Tasks() {
     }
 
     const handleDelete = (id) =>{
-        useAxios.post(`/Tasks/${id}/DeleteTask`).then(response =>
+        axiosInstance.post(`/Tasks/${id}/DeleteTask`).then(response =>
             {
                 fetchData();
                 console.log(response.data);
@@ -30,7 +30,7 @@ function Tasks() {
         );
     }
     const fetchData = useCallback(async () => {
-        useAxios.get(`/Tasks/${id}/tasks`
+        axiosInstance.get(`/Tasks/${id}/tasks`
             )
                 .then(response => {
                     // handle success

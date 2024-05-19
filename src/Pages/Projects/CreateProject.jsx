@@ -4,8 +4,8 @@ import axios from 'axios';
 import useAxios from '../../Hooks/useAxios';
 
 function CreateProject() {
-  
 
+  const axiosInstance = useAxios();
   const [ProjectName, setProjectName] = useState("");
   const [Description, setDescription] = useState("");
   const [EndDate, setEndDate] = useState("");
@@ -37,7 +37,7 @@ function CreateProject() {
         "endDate" : EndDate
       }
       console.log(response);
-    useAxios.post(`/Projects/${orgId}/createProject`, response, {
+    axiosInstance.post(`/Projects/${orgId}/createProject`, response, {
       headers: {
         'Content-Type': 'application/json'
       },

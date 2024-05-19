@@ -4,13 +4,13 @@ import useAxios from '../../Hooks/useAxios';
 
 
 function TaskMembers() {
-
+    const axiosInstance = useAxios();
     const [members,setMembers] = useState([]);
     const { id } = useParams();
 
     const handleKick = (Id) =>{
         
-        useAxios.post(`/Tasks/${id}/kickFromTask`,{
+        axiosInstance.post(`/Tasks/${id}/kickFromTask`,{
             userId: Id
           }).then(response =>{
             console.log(members);
@@ -20,7 +20,7 @@ function TaskMembers() {
     };
 
     useEffect(() => {
-            useAxios.get(`/Tasks/${id}/TaskMembers`
+            axiosInstance.get(`/Tasks/${id}/TaskMembers`
             )
                 .then(response => {
                     // handle success

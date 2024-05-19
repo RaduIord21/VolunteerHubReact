@@ -8,6 +8,8 @@ function Projects() {
 
     const [projects, setProjects] = useState([]);
     const projectId = localStorage.getItem("organizationId");
+    const axiosInstance = useAxios();
+    
     const handleDeleteProject = (id) => {
         const deleteData = {
             Id : id 
@@ -28,7 +30,7 @@ function Projects() {
     }
     
     useEffect(() => {
-        useAxios.get(`/projects/${projectId}/projects`
+        axiosInstance.get(`/projects/${projectId}/projects`
         )
             .then(response => {
                 // handle success
