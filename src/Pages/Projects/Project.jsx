@@ -58,7 +58,7 @@ function Project() {
                     
                 </div>
             </div>
-
+            <Link to ={`/project/${Project.id}/create-announcement` }><button className='btn btn-primary'>Creeaza anunt</button></Link>
             <Link to={`/tasks/${Project.id}`} className='btn btn-secondary m-1'>Taskuri</Link>
         </>
     )

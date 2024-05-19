@@ -2,6 +2,7 @@ import { Outlet, Link } from "react-router-dom";
 import { useAuth } from "../Hooks/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
+import './NoScrollbar.css';
 
 const DashboardLayout = () => {
 
@@ -185,7 +186,7 @@ const DashboardLayout = () => {
                         </a>
                     </div>
 
-                    <ul className="side-nav">
+                    <ul className="side-nav navbar-nav-scroll no-scrollbar">
 
                         <li className="side-nav-title">Administrator</li>
 

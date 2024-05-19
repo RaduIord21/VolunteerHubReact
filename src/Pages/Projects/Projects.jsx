@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import useAxios from '../../Hooks/useAxios';
+import { useAuth } from '../../Hooks/AuthProvider';
 
 
 function Projects() {
 
+    const auth = useAuth();
     const [projects, setProjects] = useState([]);
-    const projectId = localStorage.getItem("organizationId");
+    const projectId = auth.organizationId;
     const axiosInstance = useAxios();
     
     const handleDeleteProject = (id) => {

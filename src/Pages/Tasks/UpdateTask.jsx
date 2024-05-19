@@ -37,7 +37,6 @@ function UpdateTask() {
                     />
                 </label>
                 <br />
-
                 <button onClick={handleUpdate}>Update Task</button>
 
             </div>

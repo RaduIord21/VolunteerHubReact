@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import useAxios from '../../Hooks/useAxios';
+import { useAuth } from '../../Hooks/AuthProvider';
 
 function CreateProject() {
 
@@ -11,10 +12,11 @@ function CreateProject() {
   const [EndDate, setEndDate] = useState("");
   const [back, setBack] = useState(false);
 
-  const orgId = localStorage.getItem("organizationId");
+  const auth = useAuth();
+  const orgId = auth.organizationId;
   const handleBack = () => {
     setBack(true);
-  }
+  } 
 
   const handleProjectNameChange = (e) =>{
     setProjectName(e.target.value);

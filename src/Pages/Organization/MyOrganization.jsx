@@ -4,6 +4,7 @@ import useAxios from "../../Hooks/useAxios";
 import { format } from 'date-fns';
 import { useAuth } from "../../Hooks/AuthProvider";
 import Invite from './Invite';
+import { Link } from 'react-router-dom';
 
 function MyOrganization(props) {
 
@@ -90,12 +91,12 @@ function MyOrganization(props) {
               <small>Creata: {format(new Date(organization.createdAt), 'dd.MM.yyyy')}</small>
             </div>
             <div className='col-6'>
-              <Invite />
+              {auth.role === "coordinator" && <Invite />}
             </div>
           </div>
         </div>
         <div className="card-footer">
-          <button className='btn btn-danger' onClick={handleQuit}>Quit organization</button>
+          <button className='btn btn-danger mx-1' onClick={handleQuit}>Quit organization</button>
         </div>
       </div>
 

@@ -25,6 +25,7 @@ import EditTask from "../Pages/Tasks/EditTask";
 import Admin from "../Pages/Admin/Admin";
 import Profile from "../Pages/Home/Profile";
 import ChangePassword from "../Pages/Home/ChangePassword";
+import CreateAnnouncement from "../Pages/Projects/CreateAnnouncement";
 
 export const routes = [
     {
@@ -85,6 +86,7 @@ export const routes = [
                 path: '/change-password',
                 isPublic: true,
             },
+            
             {
                 name: 'organization',
                 title: 'Organization',
@@ -154,7 +156,14 @@ export const routes = [
                         hasSiderLink: true,
                         component: Project,
                         path: '/project/:id'
-                    }
+                    },
+                    {
+                        name: 'create-announcement',
+                        title: 'create-announcement',
+                        component: CreateAnnouncement,
+                        path: '/project/:id/create-announcement',
+                        isPublic: true,
+                    },
                 ]
             },{
                 name: 'tasks',
@@ -202,7 +211,8 @@ export const routes = [
                         hasSiderLink: true,
                         component: EditTask,
                         path: '/tasks/:projectId/edit-task/:id'
-                    }
+                    },
+                    
                 ]
             }
         ]
