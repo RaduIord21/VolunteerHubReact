@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import {Tooltip} from "react-tooltip";
 import './NoScrollbar.css';
+import Announcements from "../Components/Announcements";
 
 const DashboardLayout = () => {
 
@@ -76,12 +77,7 @@ const DashboardLayout = () => {
                                         <div className="col">
                                             <h6 className="m-0 font-16 fw-semibold"> Notification</h6>
                                         </div>
-                                        <div className="col-auto">
-                                            <a href="#"
-                                                className="text-dark text-decoration-underline">
-                                                <small>Clear All</small>
-                                            </a>
-                                        </div>
+                                        
                                     </div>
                                 </div>
 
@@ -95,17 +91,8 @@ const DashboardLayout = () => {
                                             <span className="float-end noti-close-btn text-muted"><i
                                                 className="mdi mdi-close"></i></span>
                                             <div className="d-flex align-items-center">
-                                                <div className="flex-shrink-0">
-                                                    <div className="notify-icon bg-primary">
-                                                        <i className="mdi mdi-comment-account-outline"></i>
-                                                    </div>
-                                                </div>
-                                                <div className="flex-grow-1 text-truncate ms-2">
-                                                    <h5 className="noti-item-title fw-semibold font-14">Datacorp <small
-                                                        className="fw-normal text-muted ms-1">1 min ago</small></h5>
-                                                    <small className="noti-item-subtitle text-muted">Caleb Flakelar
-                                                        commented on Admin</small>
-                                                </div>
+                                                
+                                                <Announcements />
                                             </div>
                                         </div>
                                     </a>
@@ -116,10 +103,7 @@ const DashboardLayout = () => {
                                     </div>
                                 </div>
 
-                                <a href="#"
-                                    className="dropdown-item text-center text-primary notify-item border-top py-2">
-                                    View All
-                                </a>
+                               
 
                             </div>
                         </li>
