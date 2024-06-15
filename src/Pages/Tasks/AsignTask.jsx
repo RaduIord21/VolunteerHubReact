@@ -11,19 +11,19 @@ function AsignTask() {
     const [task, setTask] = useState(null);
     const [back, setBack] = useState(false);
     const axiosInstance = useAxios();
-    
+
     useEffect(() => {
 
         axiosInstance.get(`/tasks/${id}/task`
         ).then(response => {
             console.log(response.data);
             setTask(response.data);
-            
+
             axiosInstance.get(`/tasks/${response.data.projectId}/projectMembersForTask`
             ).then(response => {
-                console.log("Asta e de pe server");          
+                console.log("Asta e de pe server");
                 console.log(response.data);
-                    setOptions(response.data);  
+                    setOptions(response.data);
                 })
                 .catch(error => {
                     // handle error
@@ -44,12 +44,12 @@ function AsignTask() {
           )
         );
       };
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const users = options.filter(item => item.checked)
-        const userIds = users.map((object) => object.id);   
-        const data = 
+        const userIds = users.map((object) => object.id);
+        const data =
         {
             userIds: userIds
         }
@@ -67,7 +67,7 @@ function AsignTask() {
     }
     return (
         <>
-            <h1>Atribuie task</h1>
+            <h1>Atribuie activitate</h1>
             {task &&
                 <div className="card">
                 <div className="card-body">
@@ -75,7 +75,7 @@ function AsignTask() {
                     <p className="card-text"><label>Descriere: </label> {task.description}
                     </p>
 
-                    <p>Acest task tine pana la <strong>{task.endDate}</strong></p>
+                    <p>Aceasta activitate tine pana la <strong>{task.endDate}</strong></p>
                 </div>
                 <div className="card-footer d-flex justify-content-between">
                     <small>Status: {task.status}</small>
@@ -98,7 +98,7 @@ function AsignTask() {
                         </div>
                     )
                 )}
-                <button type='submit' className='btn btn-primary'>Submit !</button>
+                <button type='submit' className='btn btn-primary'>Trimite</button>
             </form>
         </>
     )

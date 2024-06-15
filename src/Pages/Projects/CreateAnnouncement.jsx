@@ -31,7 +31,7 @@ function CreateAnnouncement() {
     return (
         <>
         {redirect && <Navigate to={`/project/${id}`} />}
-        <h1>Creeza anunt</h1> 
+        <h1>Creeza anunt</h1>
         <form className='w-25 m-3' onSubmit={handleSubmit}>
       <label className='form-label'>Titlul anuntului</label>
       <input
@@ -47,8 +47,8 @@ function CreateAnnouncement() {
           value={Content}
           onChange={handleContentChange}
       />
-      <button className='btn btn-primary'  type='submit'> Submit </button>
-        </form>   
+      <button className='btn btn-primary'  type='submit'> Trimite </button>
+        </form>
         </>
     )
 }

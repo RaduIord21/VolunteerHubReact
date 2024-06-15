@@ -72,7 +72,7 @@ function CreateTask() {
     return (
         <>
             {back && <Navigate to={`/tasks/${NumId}`} />}
-            <h1>Task nou</h1>
+            <h1>Activitate noua</h1>
             <div className="row">
                 <div className="col-6">
                     <form className='m-3' onSubmit={handleSubmit}>
@@ -131,7 +131,7 @@ function CreateTask() {
 
                         <div className="mb-3">
                             <br/>
-                            <input type='submit' className='btn btn-primary' value="Submit"/>
+                            <input type='submit' className='btn btn-primary' value="Trimite"/>
                         </div>
                     </form>
                 </div>

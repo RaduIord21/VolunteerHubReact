@@ -16,7 +16,7 @@ function CreateProject() {
   const orgId = auth.organizationId;
   const handleBack = () => {
     setBack(true);
-  } 
+  }
 
   const handleProjectNameChange = (e) =>{
     setProjectName(e.target.value);
@@ -32,7 +32,7 @@ function CreateProject() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const response = 
+    const response =
       {
         "projectName" : ProjectName,
         "description" : Description,
@@ -54,7 +54,7 @@ function CreateProject() {
       });
   };
 
-  
+
 
   return (<>
     <h1>Proiect nou</h1>
@@ -82,7 +82,7 @@ function CreateProject() {
           value={EndDate}
           onChange={handleEndDateChange}
       />
-      <button className='btn btn-primary mt-3' type="submit">Submit</button>
+      <button className='btn btn-primary mt-3' type="submit">Trimite</button>
     </form>
   </>);
 }

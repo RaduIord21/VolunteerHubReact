@@ -11,10 +11,10 @@ function Projects() {
     const [projects, setProjects] = useState([]);
     const projectId = auth.organizationId;
     const axiosInstance = useAxios();
-    
+
     const handleDeleteProject = (id) => {
         const deleteData = {
-            Id : id 
+            Id : id
         };
         axios.post('http://localhost:8000/api/deleteProject',deleteData,{
             headers: {
@@ -30,7 +30,7 @@ function Projects() {
         })
         ;
     }
-    
+
     useEffect(() => {
         axiosInstance.get(`/projects/${projectId}/projects`
         )
@@ -39,14 +39,14 @@ function Projects() {
                 console.log(response.data);
                 setProjects(response.data);
             })
-            .catch(error => {   
+            .catch(error => {
                 // handle error
                 console.log(error.response.data);
             })
     }, []);
-    
 
-    
+
+
     return (
         <>
             <h1>Lista proiecte</h1>
@@ -77,7 +77,7 @@ function Projects() {
                                     <button className='btn btn-danger m-1'
                                             onClick={() => handleDeleteProject(item.id)}>Stergere
                                     </button>
-                                    <Link to={`/tasks/${item.id}`} className='btn btn-secondary m-1'>Taskuri</Link>
+                                    <Link to={`/tasks/${item.id}`} className='btn btn-secondary m-1'>Activitati</Link>
                                 </td>
                             </tr>
                         ))

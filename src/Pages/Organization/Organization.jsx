@@ -14,18 +14,18 @@ function Organization(props) {
                             <h4>Creeaza organizatie</h4>
                         </div>
                         <div className="card-body">
-                            
+
                             <CreateOrganization />
                         </div>
                     </div>
                 </div>
                 <div className='col-6'>
-                    <div class="card">
+                    <div className="card">
                         <div className="card-header">
                             <h4>Alatura-te unei organizatii</h4>
                         </div>
                         <div className="card-body">
-                            <JoinOrganization />                            
+                            <JoinOrganization />
                         </div>
                     </div>
                 </div>

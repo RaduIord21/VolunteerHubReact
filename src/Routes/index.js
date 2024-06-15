@@ -26,6 +26,8 @@ import Admin from "../Pages/Admin/Admin";
 import Profile from "../Pages/Home/Profile";
 import ChangePassword from "../Pages/Home/ChangePassword";
 import CreateAnnouncement from "../Pages/Projects/CreateAnnouncement";
+import ChangeProjectDescription from "../Pages/Projects/ChangeProjectDescription";
+import ChangeProjectName from "../Pages/Projects/ChangeProjectName";
 
 export const routes = [
     {
@@ -51,8 +53,8 @@ export const routes = [
                 path: '/register',
                 isPublic: true,
             },
-            
-            
+
+
         ]
     },
     {
@@ -78,7 +80,7 @@ export const routes = [
                 component: Profile,
                 path: '/profile',
                 isPublic: true,
-            }, 
+            },
             {
                 name: 'change-password',
                 title: 'change-password',
@@ -86,7 +88,7 @@ export const routes = [
                 path: '/change-password',
                 isPublic: true,
             },
-            
+
             {
                 name: 'organization',
                 title: 'Organization',
@@ -158,6 +160,20 @@ export const routes = [
                         path: '/project/:id'
                     },
                     {
+                        name: 'change-project-description',
+                        title: 'Change project description',
+                        hasSiderLink: true,
+                        component: ChangeProjectDescription,
+                        path: '/changeProjectDescription/:id'
+                    },
+                    {
+                        name: 'change-project-name',
+                        title: 'Change project name',
+                        hasSiderLink: true,
+                        component: ChangeProjectName,
+                        path: '/changeProjectName/:id'
+                    },
+                    {
                         name: 'create-announcement',
                         title: 'create-announcement',
                         component: CreateAnnouncement,
@@ -212,7 +228,7 @@ export const routes = [
                         component: EditTask,
                         path: '/tasks/:projectId/edit-task/:id'
                     },
-                    
+
                 ]
             }
         ]

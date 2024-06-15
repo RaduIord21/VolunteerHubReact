@@ -49,26 +49,26 @@ function Tasks() {
         }, [id, fetchData]);
 
     return <>
-        <h1>Tasks</h1>
-        <UpdateProgressPopup 
-        show={showPopup} 
-        endpoint={endpoint} 
-        title="Add Progress"
-        instructions="Submit a new value to be added to the progress"
+        <h1>Activitati</h1>
+        <UpdateProgressPopup
+        show={showPopup}
+        endpoint={endpoint}
+        title="Adauga Progres"
+        instructions="Trimite o valoare noua pentru a fi adaugata ca progres al activitatii"
         label="Value"
         handleClose={handleClosePopup} />
-        <p><Link to={`/create-task/${id}`}><button className='btn btn-primary' >Add Task</button></Link></p>
+        <p><Link to={`/create-task/${id}`}><button className='btn btn-primary' >Adauga activitate</button></Link></p>
         <div className="text-center">
             <div className="table-responsive">
                 <table className="table table-bordered table-condensed table-striped table-hover sortable">
                         <thead>
                         <tr>
-                            <th>Task name</th>
-                            <th>Description</th>
-                            <th>Job</th>
-                            <th>Progress</th>
-                            <th>Status</th>
-                            <th>End Date</th>
+                            <th>Nume activitate</th>
+                            <th>Descriere</th>
+                            <th>Proceduri</th>
+                            <th>Progres</th>
+                            <th>Stare</th>
+                            <th>Data finalizare</th>
                             <th>Actiuni</th>
                         </tr>
                         </thead>
@@ -82,19 +82,19 @@ function Tasks() {
                             <td>{item.name}</td>
                             <td>{item.description}</td>
                             <td>{item.action}</td>
-                            <td>{item.progress}/{item.successTreshold} {item.measureUnit}  
-                            <button onClick={() => handleShowPopup(item.id)} className='btn btn-sm btn-outline-primary mx-2'>Add</button></td>
+                            <td>{item.progress}/{item.successTreshold} {item.measureUnit}
+                            <button onClick={() => handleShowPopup(item.id)} className='btn btn-sm btn-outline-primary mx-2'>Adauga</button></td>
                             <td>{item.status}</td>
                             <td>{item.endDate}</td>
                             <td>
                                 <Link to={`/tasks/${item.id}/taskmembers`}>
                                     <button className='btn btn-sm btn-outline-primary mx-2'>Voluntari</button>
                                 </Link>
-                                
+
                                 <Link to={`/tasks/${item.projectId}/edit-task/${item.id}`}>
-                                    <button className='btn btn-sm btn-outline-primary mx-2'>Editeaza task</button>
+                                    <button className='btn btn-sm btn-outline-primary mx-2'>Modifica activitate</button>
                                 </Link>
-                                <button className='btn btn-danger' onClick={() => handleDelete(item.id)}>Delete task</button>
+                                <button className='btn btn-sm btn-danger' onClick={() => handleDelete(item.id)}>Sterge activitate</button>
                             </td>
                         </tr>
                     ))}

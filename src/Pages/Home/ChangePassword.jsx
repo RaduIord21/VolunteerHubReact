@@ -64,7 +64,7 @@ function ChangePassword() {
                     value={confirmPassword}
                     onChange={handleConfirmPasswordChange}
                 />
-                <button className='btn btn-primary mt-3' type="submit">Submit</button>
+                <button className='btn btn-primary mt-3' type="submit">Trimite</button>
             </form>
             <span className='text-danger'>{err}</span>
         </>

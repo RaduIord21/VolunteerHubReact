@@ -43,7 +43,7 @@ function MyOrganization(props) {
                     console.log("Nu e organizatie");
                 }
             }).catch(error => {
-            console.log("Eroare fatalaa " + error)
+            console.log("Eroare fatala " + error)
         })
 
         axiosInstance.get(`/organization/${orgId}/organization-users`).then(

@@ -34,13 +34,13 @@ function Dashboard(props) {
     {
       image: dashboardTasks,
       number: 17,
-      text: 'Taskuri',
+      text: 'Activitati',
     },
   ];
-    
+
     return (<>
       {selectOrg && <Navigate to="/select-organization"/>}
-      <h1>Dashboard</h1>
+      <h1>Panoul de control</h1>
       <h3>{(props.username === "") ? 'Unauthorized' : props.username}</h3>
       {
         <div className="card">

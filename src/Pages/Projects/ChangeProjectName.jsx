@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import { useParams, Navigate } from 'react-router-dom';
-import axios from 'axios';
+import useAxios from '../../Hooks/useAxios';
 
 function ChangeProjectName() {
 
     const [name, setName] = useState("");
     const [back, setBack] = useState(false);
     const {id} = useParams();
+    const axiosInstance = useAxios();
     const stringToNumber = (str) => parseInt(str, 10);
     const NumId = stringToNumber(id);
 
@@ -14,6 +15,17 @@ function ChangeProjectName() {
         setName(e.target.value);
     }
 
+    useEffect(() => {
+        axiosInstance.get(`/Projects/${NumId}/getProject`)
+            .then(response => {
+                setName(response.data.projectName);
+                if (response.data === null || response.data === undefined) {
+                    console.log("Nu e proiect");
+                }
+            }).catch(error => {
+            console.log("Eroare fatala " + error)
+        })
+    }, []);
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -21,7 +33,7 @@ function ChangeProjectName() {
             "Id" : NumId,
             "Name" : name
         }
-        axios.post('http://localhost:8000/api/changeProjectName', data, {
+        axiosInstance.post(`/Projects/${NumId}/changeProjectName`, data, {
             headers: {
               'Content-Type': 'application/json'
             },
@@ -42,7 +54,7 @@ function ChangeProjectName() {
         <form className='w-25 m-3' onSubmit={handleSubmit}>
                 <label htmlFor="input1" className='form-label'>Type new Name</label>
                 <input type='text' className='form-control' value={name} onChange={handleNameChange} />
-                <input className='btn btn-primary mt-3' type="submit" value="Submit !" />
+                <input className='btn btn-primary mt-3' type="submit" value="Trimite" />
             </form>
         </>
     )

@@ -9,7 +9,7 @@ function TaskMembers() {
     const { id } = useParams();
 
     const handleKick = (Id) =>{
-        
+
         axiosInstance.post(`/Tasks/${id}/kickFromTask`,{
             userId: Id
           }).then(response =>{
@@ -36,7 +36,7 @@ function TaskMembers() {
 
     return <>
         <h1>Voluntari</h1>
-        <p><Link to={`/assign-task/${id}`}><button className='btn btn-primary' >Add Member</button></Link></p>
+        <p><Link to={`/assign-task/${id}`}><button className='btn btn-primary' >Adaugare voluntar</button></Link></p>
         <div className="text-center">
             <div className="table-responsive">
                 <table className="table table-bordered table-condensed table-striped table-hover sortable">

@@ -65,7 +65,7 @@ const DashboardLayout = () => {
                         </li>
 
 
-                        <li className="dropdown notification-list">
+                        {/*<li className="dropdown notification-list">
                             <a className="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#"
                                 role="button" aria-haspopup="false" aria-expanded="false">
                                 <i className="fa fa-bell"></i>
@@ -77,7 +77,7 @@ const DashboardLayout = () => {
                                         <div className="col">
                                             <h6 className="m-0 font-16 fw-semibold"> Notification</h6>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
 
@@ -91,7 +91,7 @@ const DashboardLayout = () => {
                                             <span className="float-end noti-close-btn text-muted"><i
                                                 className="mdi mdi-close"></i></span>
                                             <div className="d-flex align-items-center">
-                                                
+
                                                 <Announcements />
                                             </div>
                                         </div>
@@ -103,10 +103,10 @@ const DashboardLayout = () => {
                                     </div>
                                 </div>
 
-                               
+
 
                             </div>
-                        </li>
+                        </li>*/}
 
 
                         <div className="dropdown">
@@ -206,7 +206,7 @@ const DashboardLayout = () => {
                             </Link>
                         </li>
 
-                        
+
 
                         {hasOrg && <li className="side-nav-item">
                             <Link to="/my-organization" className="side-nav-link">

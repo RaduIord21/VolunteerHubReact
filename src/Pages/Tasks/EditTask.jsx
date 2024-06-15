@@ -26,7 +26,7 @@ const EditTask = () => {
                 console.log(response.data, 'task details');
                 setTask(response.data);
             })
-            .catch(error => {   
+            .catch(error => {
                 // handle error
                 console.log(error.response.data);
             })
@@ -44,7 +44,7 @@ const EditTask = () => {
         e.preventDefault();
         try {
             axiosInstance.post(`/Tasks/${id}/editTask`, task)
-                .then(response => { 
+                .then(response => {
                     setBack(true);
                 });
         } catch (error) {
@@ -55,7 +55,7 @@ const EditTask = () => {
     return (
         <>
         {back && <Navigate to={`/tasks/${projectId}`} />}
-        <h1>Edit Task</h1>
+        <h1>Modificare activitate</h1>
         <div className="container mt-5">
             <form className="w-25" onSubmit={handleSubmit}>
                 <div className=" mb-3">
@@ -135,7 +135,7 @@ const EditTask = () => {
                     />
                     <label className="form-check-label" htmlFor="isTime">Is Time</label>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Trimite</button>
             </form>
         </div>
         </>

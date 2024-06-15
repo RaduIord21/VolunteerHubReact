@@ -9,11 +9,11 @@ function JoinOrganization() {
     const [redirectCorrect, setRedirectCorrect] = useState(false);
     const [redirectFail, setRedirectFail] = useState(false);
     const axiosInstance = useAxios();
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
-       
+
         axiosInstance.post('/Organization/joinOrganization?code=' + code
         ).then(response => {
             console.log(response.data);
@@ -24,7 +24,7 @@ function JoinOrganization() {
             // Handle error
             console.error("Error");
         });
-        
+
     }
 
     const handleCodeChange = (e) => {
@@ -36,7 +36,7 @@ function JoinOrganization() {
             <form className='m-3' onSubmit={handleSubmit}>
                 <label for="input1" className='form-label'>introduceti codul</label>
                 <input type="text" id="input1" name="input1" className='form-control' value={code} onChange={handleCodeChange} />
-                <input className='btn btn-primary mt-3' type="submit" value="Trimite !" />
+                <input className='btn btn-primary mt-3' type="submit" value="Trimite" />
             </form>
         </>
     )

@@ -20,13 +20,13 @@ function Admin() {
             }).catch(error => {
                 // Handle error
                 console.log(error, "login error");
-            });  
-            
+            });
+
     }
     useEffect(() => {
-        axiosInstance.get('/AllUsers').then(response => {
+        axiosInstance.get('/UserStats/AllUserStats').then(response => {
             setUsers(response.data);
-            console.log(response.data); 
+            console.log(response.data);
         });
     },[]);
     return (

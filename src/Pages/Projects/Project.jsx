@@ -11,7 +11,7 @@ function Project() {
     const [loading, setLoading] = useState(true);
     const [projectStats, setProjectStats] = useState(null);
     const axiosInstance = useAxios();
-    
+
     useEffect(() => {
         console.log(id, "Acii sunt");
         axiosInstance.get('/projects/' + id + '/getProject')
@@ -20,7 +20,7 @@ function Project() {
                 console.log(response.data);
                 setProject(response.data);
                 axiosInstance.get(`/ProjectStats/${id}/ProjectStats`).then(response =>{
-                    console.log(response.data, 'stats'); 
+                    console.log(response.data, 'stats');
                     setProjectStats(response.data);
                     setLoading(false);
                 });
@@ -29,13 +29,13 @@ function Project() {
                 // Handle error
                 console.error('Eroare la getProject:', error);
             });
-        
+
     },[id]);
 
     if (loading) {
         return <LoadingSpinner />;
       }
-    
+
     return (
         <>
             <h1>Detalii proiect</h1>
@@ -55,11 +55,11 @@ function Project() {
                 <div className="card-footer d-flex justify-content-between">
                     <small>Creat: {format(new Date(Project.createdAt), 'dd.MM.yyyy')}</small>
                     <small>Ultima actualizare: {format(new Date(Project.updatedAt), 'dd.MM.yyyy')}</small>
-                    
+
                 </div>
             </div>
             <Link to ={`/project/${Project.id}/create-announcement` }><button className='btn btn-primary'>Creeaza anunt</button></Link>
-            <Link to={`/tasks/${Project.id}`} className='btn btn-secondary m-1'>Taskuri</Link>
+            <Link to={`/tasks/${Project.id}`} className='btn btn-secondary m-1'>Activitati</Link>
         </>
     )
 }

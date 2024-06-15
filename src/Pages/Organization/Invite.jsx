@@ -10,7 +10,7 @@ function Invite() {
     const axiosIntance = useAxios();
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
-        
+
     }
 
     const handleSubmit = (e) => {
@@ -38,8 +38,8 @@ function Invite() {
                 value={email}
                 onChange={handleEmailChange}
             />
-            <input className='btn btn-primary mt-3' type="submit" value="Trimite !" />
-            
+            <input className='btn btn-primary mt-3' type="submit" value="Trimite" />
+
         </form>
         {success && <span className='text-success'>Invitatia a fost trimisa cu succes !</span>}
         {error && <span className='text-danger'>{error}</span>}

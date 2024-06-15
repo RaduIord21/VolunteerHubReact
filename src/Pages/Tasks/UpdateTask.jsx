@@ -27,7 +27,7 @@ function UpdateTask() {
         {redirect && <Navigate to={'/tasks/' + projectId} />}
         <div className="popup">
             <div className="popup-content">
-                <h2>Update Task</h2>
+                <h2>Modifica activitate</h2>
                 <label>
                     Progress:
                     <input
@@ -37,7 +37,7 @@ function UpdateTask() {
                     />
                 </label>
                 <br />
-                <button onClick={handleUpdate}>Update Task</button>
+                <button onClick={handleUpdate}>Modifica</button>
 
             </div>
         </div>

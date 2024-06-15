@@ -136,7 +136,7 @@ return (<>
                 </div>
               </div>
               <div className='text-center'>
-                <button type="submit" className='btn btn-primary'>Register</button>
+                <button type="submit" className='btn btn-primary'>Inregistrare</button>
               </div>
             </form>
             {showWarning && <PasswordMatchWarning/>}

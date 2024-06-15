@@ -11,7 +11,7 @@ function CreateOrganization(props) {
     const [redirect, setRedirect]= useState(false);
     const [emptyForm, setEmptyform] = useState(false);
     const axiosInstance = useAxios();
-    
+
     //setRole(props.role);
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -74,7 +74,7 @@ function CreateOrganization(props) {
                 <label for="input3" className='form-label'>Contact :</label>
                 <input type="text" id="input3" name="input3" className='form-control' value={contact} onChange={handleContactChange} />
 
-                <input className='btn btn-primary mt-3' type="submit" value="Trimite !" />
+                <input className='btn btn-primary mt-3' type="submit" value="Creaza" />
             </form>
             {emptyForm && <span className='text-danger'>Adaugati date in formulare</span>}
         </>
