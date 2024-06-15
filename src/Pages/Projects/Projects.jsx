@@ -13,15 +13,7 @@ function Projects() {
     const axiosInstance = useAxios();
 
     const handleDeleteProject = (id) => {
-        const deleteData = {
-            Id : id
-        };
-        axios.post('http://localhost:8000/api/deleteProject',deleteData,{
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            withCredentials: true
-        }
+        axiosInstance.post(`/Projects/${id}/deleteProject`
         ).then(response => {
             console.log(response);
             setProjects(prevProjects => prevProjects.filter(project => project.id !== id));
