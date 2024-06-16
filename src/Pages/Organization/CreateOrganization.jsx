@@ -11,20 +11,15 @@ function CreateOrganization(props) {
     const [redirect, setRedirect]= useState(false);
     const [emptyForm, setEmptyform] = useState(false);
     const axiosInstance = useAxios();
-
-    //setRole(props.role);
     const handleNameChange = (e) => {
         setName(e.target.value);
     }
-
     const handleAdressChange = (e) => {
         setAdress(e.target.value);
     }
-
     const handleContactChange = (e) => {
         setContact(e.target.value);
     }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const currentDate = new Date();
@@ -49,13 +44,10 @@ function CreateOrganization(props) {
             if (response.data === "Succes"){
                 setRedirect(true);
             }
-        })
-            .catch(error => {
+        }).catch(error => {
                 console.log("Eroare la crearea organizatiei : " + error);
             });
-
-
-    }
+        }
 
 
 

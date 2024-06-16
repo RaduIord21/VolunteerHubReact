@@ -6,13 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {useAuth} from "../../Hooks/AuthProvider";
 
 
-function SelectOrganization({ handleCompanyNameUpdate }) {
+function SelectOrganization() {
 
     const auth = useAuth();
     const [organizations, setOrganizations] = useState([]);
     const [roles, setRoles] = useState(null);
     const navigate = useNavigate();
     const loading = useRef(true);
+
     const handleSelect = (organization) => {
         auth.updateCompanyName(organization.organizationName);
         auth.updateOrganizationId(organization.organizationId);
@@ -39,7 +40,6 @@ function SelectOrganization({ handleCompanyNameUpdate }) {
         });
     }, []);
 
-
     if (loading.current) {
         return <LoadingSpinner />;
     }
@@ -47,13 +47,11 @@ function SelectOrganization({ handleCompanyNameUpdate }) {
     return (
         <>
             <h1>Organizatiile mele</h1>
-
             <table className='table'>
                 <thead>
                     <tr>
                         <th scope='col'>Nume</th>
                         <th scope='col'>Coordonator ?</th>
-                        <th scope='col'>Primara ?</th>
                         <th scope='col'>Actiuni</th>
                     </tr>
                 </thead>
@@ -62,11 +60,9 @@ function SelectOrganization({ handleCompanyNameUpdate }) {
                         <tr key={index}>
                             <td>{item.organizationName}</td>
                             <td>
-
                                 {(item.isOwner) &&
                                     <FontAwesomeIcon icon={"check"} />}
                             </td>
-                            <td>{item.isOwner && <FontAwesomeIcon icon={"check"} />}</td>
                             <td>
                                 <button className='btn btn-sm btn-primary' onClick={() => {
                                     handleSelect(item)

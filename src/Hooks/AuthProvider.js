@@ -18,16 +18,6 @@ export const AuthProvider = ({ children }) => {
         setToken(null);
     };
 
-/*    const logOut1 = () => {
-        axiosInstance.post('/logout').then(response =>{
-            setUser(null);
-        setToken("");
-        localStorage.removeItem("organizationId");
-
-        navigate("/login");
-        });
-    };*/
-
     const updateUser = (user) => {
         setUser(user);
     }

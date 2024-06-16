@@ -8,7 +8,6 @@ const generateFlattenRoutes = (routes) => {
     if (!routes) return [];
     return flattenDeep(routes.map(({ routes: subRoutes, ...rest }) => [rest, generateFlattenRoutes(subRoutes)]));
 }
-
 export const renderRoutes = (mainRoutes) => {
     return ({isAuthorized}) => {
         const layouts = mainRoutes.map(({layout: Layout, routes}, index) => {

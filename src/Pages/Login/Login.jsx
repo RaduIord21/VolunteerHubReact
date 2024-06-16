@@ -14,15 +14,12 @@ const Login = () => {
         const navigate = useNavigate();
         const {login, updateUser} = useAuth();
         const axiosInstance = useAxios();
-
         const handleUserNameChange = (e) => {
             setUserName(e.target.value);
         };
-
         const handlePasswordChange = (e) => {
             setPassword(e.target.value);
         };
-
         const handleSubmit = async (e) => {
             e.preventDefault();
             console.log('login submit');

@@ -20,7 +20,6 @@ const HomeLayout = () => {
 
     return (
         <div className="HomeLayout">
-
         <Outlet />
         </div>
     )

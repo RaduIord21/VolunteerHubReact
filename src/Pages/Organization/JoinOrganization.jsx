@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 import useAxios from '../../Hooks/useAxios';
 
