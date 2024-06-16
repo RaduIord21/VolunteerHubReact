@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import useAxios from '../../Hooks/useAxios';
 import { useAuth } from '../../Hooks/AuthProvider';
+import Invite from "../Organization/Invite";
 
 
 function Projects() {
@@ -66,9 +67,9 @@ function Projects() {
                                 <td className='m-1'>{item.endDate}</td>
                                 <td>
                                     <Link to={`/project/${item.id}`} className='btn btn-primary m-1'>Detalii</Link>
-                                    <button className='btn btn-danger m-1'
+                                    {auth.role === "coordinator" && <button className='btn btn-danger m-1'
                                             onClick={() => handleDeleteProject(item.id)}>Stergere
-                                    </button>
+                                    </button>}
                                     <Link to={`/tasks/${item.id}`} className='btn btn-secondary m-1'>Activitati</Link>
                                 </td>
                             </tr>

@@ -31,7 +31,7 @@ function JoinOrganization() {
     }
     return (
         <>
-            {redirectCorrect && (<Navigate to="/my-organization" />)}
+            {redirectCorrect && (<Navigate to="/select-organization" />)}
             <form className='m-3' onSubmit={handleSubmit}>
                 <label for="input1" className='form-label'>introduceti codul</label>
                 <input type="text" id="input1" name="input1" className='form-control' value={code} onChange={handleCodeChange} />

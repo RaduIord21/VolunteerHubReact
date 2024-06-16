@@ -41,7 +41,7 @@ function CreateOrganization(props) {
             withCredentials: true
         }).then(response => {
             console.log(response.data);
-            if (response.data === "Succes"){
+            if (response.data === "Success"){
                 setRedirect(true);
             }
         }).catch(error => {
@@ -51,10 +51,10 @@ function CreateOrganization(props) {
 
 
 
-    if ( redirect !== true){
+    // if ( redirect !== true){
     return (
         <>
-            {redirect && <Navigate to="Organization"/>}
+            {redirect && <Navigate to="/select-organization"/>}
             <form className='m-3' onSubmit={handleSubmit}>
 
                 <label for="input1" className='form-label'>Numele organizatiei</label>
@@ -70,11 +70,12 @@ function CreateOrganization(props) {
             </form>
             {emptyForm && <span className='text-danger'>Adaugati date in formulare</span>}
         </>
-    )}
+    )
+/*}
     else
     {
         //return <Dashboard organizationExists={redirect} />
-    }
+    }*/
 }
 
 export default CreateOrganization;

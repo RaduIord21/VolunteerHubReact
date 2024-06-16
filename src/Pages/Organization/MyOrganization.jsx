@@ -23,18 +23,19 @@ function MyOrganization(props) {
     const [showPopup, setShowPopup] = useState(false);
     const [showDeletePopup, setShowDeletePopup] = useState(false);
 
-    const handleKick = (email) => {
+    const handleKick = (userName) => {
         const data = {
-            email: email
+            organizationId: orgId
         }
-        axiosInstance.post('/kick', data
+        axiosInstance.post(`/Organization/${userName}/kick`, data
         ).then(response => {
             console.log(response);
-            setUsers(prevUsers => prevUsers.filter(user => user.email !== email));
+            setUsers(prevUsers => prevUsers.filter(user => user.userName !== userName));
         }).catch(error => {
             console.error(error);
         })
     }
+
     useEffect(() => {
         axiosInstance.get(`/organization/${orgId}/organization`)
             .then(response => {
@@ -61,7 +62,7 @@ function MyOrganization(props) {
 
     const handleQuit = () => {
         if (auth.role === 'coordinator') {
-            setShowPopup(true)
+            setShowPopup(true); //select new coordinator first!
         } else {
             sendQuit('');
         }
@@ -87,13 +88,13 @@ function MyOrganization(props) {
 
     const sendQuit = (userName) => {
         const data = {
-            user: userName
+            newCoordinatorId: userName
         }
         axiosInstance.post('/organization/' + auth.organizationId + '/quitOrganization', data
         ).then(response => {
             console.log('response quit', response);
             auth.updateRole('anonymous');
-            navigate('/dashboard');
+            navigate('/select-organization');
         }).catch(error => {
             // Handle error
             console.error('Error: no user ', error);
@@ -166,9 +167,9 @@ function MyOrganization(props) {
                         <td>{item.email}</td>
                         <td>{item.roles[0]}</td>
                         <td>
-                            {(item.roles[0] === "Coordinator" && item.userName !== auth.user) &&
+                            {(auth.role === "coordinator" && item.roles[0] === "Coordinator" && item.userName !== auth.user) &&
                                 <button className='btn btn-danger' onClick={() => {
-                                    handleKick(item.email)
+                                    handleKick(item.userName)
                                 }}>Kick</button>}
                         </td>
                     </tr>
