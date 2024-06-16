@@ -24,7 +24,7 @@ function Admin() {
 
     }
     useEffect(() => {
-        axiosInstance.get('/UserStats/AllUserStats').then(response => {
+        axiosInstance.get('/AllUsers').then(response => {
             setUsers(response.data);
             console.log(response.data);
         });
