@@ -105,7 +105,7 @@ function MyOrganization(props) {
         ).then(response => {
             console.log('response delete', response);
             auth.updateRole('anonymous');
-            navigate('/dashboard');
+            navigate('/select-organization');
         }).catch(error => {
             // Handle error
             console.error('Error: no user ', error);
