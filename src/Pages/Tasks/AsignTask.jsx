@@ -11,18 +11,13 @@ function AsignTask() {
     const [task, setTask] = useState(null);
     const [back, setBack] = useState(false);
     const axiosInstance = useAxios();
-
     useEffect(() => {
-
         axiosInstance.get(`/tasks/${id}/task`
         ).then(response => {
-            console.log(response.data);
             setTask(response.data);
-
             axiosInstance.get(`/tasks/${response.data.projectId}/projectMembersForTask`
             ).then(response => {
-                console.log("Asta e de pe server");
-                console.log(response.data);
+
                     setOptions(response.data);
                 })
                 .catch(error => {
@@ -32,10 +27,7 @@ function AsignTask() {
         }).catch(error => {
             console.error(error);
         })
-
-
     }, []);
-
     const handleChange = (id) => {
         // Actualizăm starea checkbox-ului cu id-ul specificat
         setOptions((prevCheckboxList) =>
@@ -44,16 +36,13 @@ function AsignTask() {
           )
         );
       };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const users = options.filter(item => item.checked)
         const userIds = users.map((object) => object.id);
-        const data =
-        {
+        const data ={
             userIds: userIds
         }
-        console.log(data);
         axiosInstance.post(`/tasks/${task.id}/assignTask`,data
             )
                 .then(response => {
@@ -63,7 +52,6 @@ function AsignTask() {
                 .catch(error => {
                     console.error(error);
                 })
-
     }
     return (
         <>

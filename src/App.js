@@ -35,33 +35,7 @@ function App() {
       <AuthProvider>
         <Routes />
       </AuthProvider>
-   /* <div className="App">
-      <Router>
-
-        <NavbarCustom username={name} organization={organization} setName={setName}/>
-        <Navbar username={name} setName={setName}/>
-        <div className="content-page">
-        <Routes>
-            <Route path='/' Component={() => <Home />} />
-            <Route path='/register' Component={() => <Register />} />
-            <Route path='/login' Component={() =><Login setName={setName}/>} />
-            <Route path='/projects' Component={() => <Projects />} />
-            <Route path='/createProject' Component={() => <CreateProject />} />
-          <Route path='/tasks/:id' Component={() => <Tasks />} />
-          <Route path='/createTask/:id' Component={() => <CreateTask role={role}/>} />
-            <Route path='/dashboard' Component={() => <Dashboard username={name} Organization={organization}/>} />
-            <Route path='/organization' Component={() => <Organization />} />
-            <Route path='/createOrganization' Component={() => <CreateOrganization role={role}/>} />
-          <Route path='/joinOrganization' Component={() => <JoinOrganization />} />
-          <Route path='/myOrganization' Component={() => <MyOrganization email={email}/>} />
-            <Route path="/project/:id" Component={() => <Project />} />
-          <Route path="/changeProjectDescription/:id" Component={() => <ChangeProjectDescription />} />
-          <Route path="/changeProjectName/:id" Component={() => <ChangeProjectName />} />
-            <Route path='/asignTask/:id' Component={() => <AsignTask />}/>
-        </Routes>
-        </div>
-      </Router>
-    </div>*/
+   
   );
 }
 

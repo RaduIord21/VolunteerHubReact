@@ -46,7 +46,7 @@ function Admin() {
                         <tr key={index}>
                             <td>{user.userName}</td>
                             <td>{user.email}</td>
-                            <td><button className='btn btn-sm btn-outline-primary' onClick={(e) =>{e.preventDefault(); handleImpersonation(user.userName,user.id)}}>Impersoneaza</button></td>
+                            <td><button className='btn btn-sm btn-outline-primary' onClick={(e) =>{e.preventDefault(); handleImpersonation(user.userName,user.id)}}>Autentificare</button></td>
                         </tr>
             ))}
                 </tbody>

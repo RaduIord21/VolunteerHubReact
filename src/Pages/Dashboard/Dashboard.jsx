@@ -5,6 +5,8 @@ import CardComponent from "../../Components/CardComponent";
 import dashboardUsers from '../../Assets/dashboard-users.png'
 import dashboardProjects from '../../Assets/dashboard-projects.png'
 import dashboardTasks from '../../Assets/dashboard-tasks.png'
+import useAxios from '../../Hooks/useAxios';
+import { error } from 'jquery';
 
 function Dashboard(props) {
 
@@ -12,28 +14,36 @@ function Dashboard(props) {
   const [hasOrg, setHasOrg] = useState(true);
   const navigate = useNavigate();
   const [selectOrg, setSelectOrg] = useState(false);
+  const axiosInstance = useAxios();
+  const [data, setData] = useState({
+    users : 0,
+    projects : 0,
+    tasks :0
+  });
 
   useEffect(() => {
     if( auth.organizationId == null) {
       setSelectOrg(true);
     }
-
+    axiosInstance.get(`/Organization/${auth.organizationId}/getData`).then(
+      response => setData(response.data)
+    ).catch(error => console.error(error));
   }, []);
 
   const cardsData = [
     {
       image: dashboardUsers,
-      number: 12,
+      number: data.users,
       text: 'Membri',
     },
     {
       image: dashboardProjects,
-      number: 2,
+      number: data.projects,
       text: 'Proiecte',
     },
     {
       image: dashboardTasks,
-      number: 17,
+      number: data.tasks,
       text: 'Activitati',
     },
   ];

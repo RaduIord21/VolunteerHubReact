@@ -37,7 +37,8 @@ export const routes = [
                 name: 'home',
                 title: 'Home page',
                 component: Home,
-                path: '/'
+                path: '/',
+                isPublic:true,
             },
             {
                 name: 'login',
