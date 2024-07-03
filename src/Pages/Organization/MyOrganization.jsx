@@ -6,7 +6,7 @@ import {useAuth} from "../../Hooks/AuthProvider";
 import {useNavigate} from "react-router-dom";
 import SelectNewCoordinatorPopup from "../../Components/SelectNewCoordinatorPopup";
 import Invite from './Invite';
-import { Link } from 'react-router-dom';
+import ConfirmDeletePopup from "../../Components/ConfirmDeletePopup";
 
 function MyOrganization(props) {
 
@@ -21,13 +21,13 @@ function MyOrganization(props) {
     const navigate = useNavigate();
     const orgId = auth.organizationId;
     const [showPopup, setShowPopup] = useState(false);
+    const [showDeletePopup, setShowDeletePopup] = useState(false);
 
     const handleKick = (email) => {
-        console.log(users);
         const data = {
-            organizationId: orgId 
+            organizationId: orgId
         }
-        axiosInstance.post(`Organization/${email}/kick`, data
+        axiosInstance.post(`/Organization/${email}/kick`, data
         ).then(response => {
             console.log(response);
             setUsers(prevUsers => prevUsers.filter(user => user.email !== email));
@@ -65,20 +65,45 @@ function MyOrganization(props) {
         } else {
             sendQuit('');
         }
+    }
 
+    const isCoordinator = () => {
+        return auth.role === 'coordinator';
+    }
+
+    const handleDelete = () => {
+        if (auth.role === 'coordinator') {
+            setShowDeletePopup(true)
+        }
     }
 
     const handleClosePopup = () => {
         setShowPopup(false);
     }
 
+    const handleCloseDeletePopup = () => {
+        setShowDeletePopup(false);
+    }
+
     const sendQuit = (userName) => {
         const data = {
-            user: userName
+            newCoordinatorId: userName
         }
         axiosInstance.post('/organization/' + auth.organizationId + '/quitOrganization', data
         ).then(response => {
             console.log('response quit', response);
+            auth.updateRole('anonymous');
+            navigate('/select-organization');
+        }).catch(error => {
+            // Handle error
+            console.error('Error: no user ', error);
+        });
+    }
+
+    const sendDelete = () => {
+        axiosInstance.post('/organization/' + auth.organizationId + '/deleteOrganization'
+        ).then(response => {
+            console.log('response delete', response);
             auth.updateRole('anonymous');
             navigate('/dashboard');
         }).catch(error => {
@@ -97,6 +122,12 @@ function MyOrganization(props) {
                 users={users}
                 handleClose={handleClosePopup}
                 onUserSelect={sendQuit}/>
+            <ConfirmDeletePopup
+                show={showDeletePopup}
+                title="Atentie"
+                instructions="<br />Organizatia si toate datele care au legatura cu ea se va sterge. <br /> <br /> Confirmati ?"
+                handleClose={handleCloseDeletePopup}
+                handleOk={sendDelete} />
 
       <div className="card">
         <div className="card-body">
@@ -113,7 +144,8 @@ function MyOrganization(props) {
           </div>
         </div>
         <div className="card-footer">
-          <button className='btn btn-danger mx-1' onClick={handleQuit}>Quit organization</button>
+          <button className='btn btn-danger mx-1' onClick={handleQuit}>Paraseste organizatia</button>
+            {isCoordinator && <button className='btn btn-outline-danger mx-1' onClick={handleDelete}>Sterge organizatia</button>}
         </div>
       </div>
 
@@ -134,9 +166,9 @@ function MyOrganization(props) {
                         <td>{item.email}</td>
                         <td>{item.roles[0]}</td>
                         <td>
-                            {(item.roles[0] === "Coordinator" && item.userName !== auth.user) &&
+                            {(auth.role === "coordinator" && item.roles[0] === "Coordinator" && item.userName !== auth.user) &&
                                 <button className='btn btn-danger' onClick={() => {
-                                    handleKick(item.email)
+                                    handleKick(item.userName)
                                 }}>Kick</button>}
                         </td>
                     </tr>
